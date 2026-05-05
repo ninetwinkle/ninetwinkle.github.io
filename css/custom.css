@@ -1,0 +1,4846 @@
+/* =========================================================
+   Guo'blog Custom CSS for Butterfly
+   放置路径：source/css/custom.css
+   使用方式：完整替换原 custom.css，不要追加到旧文件后面
+
+   设计方向：
+   - 页面气质：克制、清爽、偏纸本文字与艺术索引感
+   - 字体体系：标题用衬线，正文与导航用清晰无衬线，文章正文用中文衬线
+   - 保留功能：背景图、透明导航、侧边栏、首页卡片、文章页、归档页、标签页、分类页、友链页、暗色模式、移动端
+   ========================================================= */
+
+
+/* =========================================================
+   0. 设计变量与全局字体
+   ========================================================= */
+
+:root {
+  --theme-color: #2f3a44 !important;
+  --text-bg-hover: rgba(47, 58, 68, 0.08) !important;
+  --high-trans-color: rgba(47, 58, 68, 0.16) !important;
+
+  --paper: rgba(250, 248, 243, 0.88);
+  --paper-strong: rgba(250, 248, 243, 0.92);
+  --paper-solid: #faf8f3;
+
+  --text: #242a31;
+  --text-strong: #161b22;
+  --muted: #6f7782;
+  --muted-light: #8a929c;
+
+  --border: rgba(36, 42, 49, 0.11);
+  --border-strong: rgba(36, 42, 49, 0.16);
+
+  --shadow: 0 10px 26px rgba(28, 34, 42, 0.10);
+  --shadow-hover: 0 14px 34px rgba(28, 34, 42, 0.15);
+
+  --radius: 10px;
+
+  --font-ui:
+    "Inter",
+    "SF Pro Text",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif;
+
+  --font-serif:
+    Georgia,
+    "Times New Roman",
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    serif;
+
+  --font-article:
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    "PingFang SC",
+    serif;
+}
+
+html {
+  font-size: 15px !important;
+}
+
+html,
+body {
+  background: transparent !important;
+}
+
+body {
+  color: var(--text);
+  font-family: var(--font-ui) !important;
+  font-size: 15px !important;
+  line-height: 1.72 !important;
+  letter-spacing: 0.005em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(47, 58, 68, 0.18) !important;
+  color: var(--text-strong) !important;
+}
+
+
+/* =========================================================
+   1. 背景与魔改残留隐藏
+   ========================================================= */
+
+#web_bg {
+  position: fixed !important;
+  z-index: -999 !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+
+  background-image: url("/assets/love.png") !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+#meihua-button,
+.meihua,
+#rightMenu,
+.rmMask,
+#myscoll,
+.neko,
+#owo-big,
+#welcome-info,
+#weibo-container,
+#fps,
+#universe,
+#snow,
+.card-webinfo,
+#rightside_config,
+#rightside .share,
+#go-down,
+.author-status-box {
+  display: none !important;
+}
+
+
+/* =========================================================
+   2. 顶部导航栏
+   说明：透明导航依赖 fomal.js 给 #nav 添加 .nav-scrolled
+   ========================================================= */
+
+#nav {
+  height: 62px !important;
+  line-height: 62px !important;
+  padding: 0 38px !important;
+
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  transition: background 0.24s ease, box-shadow 0.24s ease, border 0.24s ease !important;
+}
+
+#site-name {
+  font-family: var(--font-ui) !important;
+  font-size: 1.3rem !important;
+  font-weight: 760 !important;
+  letter-spacing: 0.01em !important;
+}
+
+#menus {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#menus .menus_items {
+  display: flex !important;
+  align-items: center !important;
+  gap: 26px !important;
+}
+
+#menus .menus_item {
+  margin: 0 !important;
+}
+
+#nav,
+#nav a,
+#nav span,
+#nav .menu_word,
+#sidebar .menu_word {
+  font-family: var(--font-ui) !important;
+  font-size: 0.95rem !important;
+}
+
+#menus .menus_item > a,
+#nav .menus_item > a,
+#search-button .search {
+  font-size: 0.95rem !important;
+  font-weight: 640 !important;
+  letter-spacing: 0.025em !important;
+  padding: 0 2px !important;
+}
+
+#menus .menus_item > a > i,
+#menus .menus_item > a .fa-chevron-down {
+  margin-left: 5px !important;
+  font-size: 0.74rem !important;
+}
+
+#nav:not(.nav-scrolled) #site-name,
+#nav:not(.nav-scrolled) .site-page,
+#nav:not(.nav-scrolled) .menus_item > a,
+#nav:not(.nav-scrolled) #search-button a,
+#nav:not(.nav-scrolled) #nav-right a,
+#nav:not(.nav-scrolled) #nav-right i,
+#nav:not(.nav-scrolled) #nav-right span,
+#nav:not(.nav-scrolled) #page-name {
+  color: rgba(255, 255, 255, 0.96) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.38) !important;
+}
+
+#nav.nav-scrolled {
+  background: rgba(250, 248, 243, 0.94) !important;
+  border-bottom: 1px solid var(--border) !important;
+  box-shadow: 0 8px 24px rgba(28, 34, 42, 0.10) !important;
+}
+
+#nav.nav-scrolled #site-name,
+#nav.nav-scrolled .site-page,
+#nav.nav-scrolled .menus_item > a,
+#nav.nav-scrolled #search-button a,
+#nav.nav-scrolled #nav-right a,
+#nav.nav-scrolled #nav-right i,
+#nav.nav-scrolled #nav-right span,
+#nav.nav-scrolled #page-name {
+  color: var(--text) !important;
+  text-shadow: none !important;
+}
+
+#nav .menus_item_child {
+  margin-top: 8px !important;
+  padding: 7px 0 !important;
+  min-width: 124px !important;
+  border-radius: 8px !important;
+  background: var(--paper-solid) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+#nav .menus_item_child li a {
+  color: var(--text) !important;
+  text-shadow: none !important;
+  font-size: 0.9rem !important;
+  font-weight: 560 !important;
+  padding: 7px 16px !important;
+}
+
+#nav .menus_item_child li a:hover {
+  color: var(--text-strong) !important;
+  background: rgba(47, 58, 68, 0.06) !important;
+}
+
+
+/* =========================================================
+   3. 头图区：首页 / 普通页 / 文章页
+   ========================================================= */
+
+#page-header.full_page {
+  min-height: 64vh !important;
+}
+
+#page-header.full_page::before {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+#site-info {
+  top: 43% !important;
+}
+
+#site-title {
+  color: #fff !important;
+  font-family: var(--font-serif) !important;
+  font-size: clamp(2.7rem, 5vw, 4.6rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0.02em !important;
+  text-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.34),
+    0 12px 32px rgba(0, 0, 0, 0.22) !important;
+}
+
+#site-subtitle,
+#subtitle {
+  color: #fff !important;
+  font-family: var(--font-serif) !important;
+  font-size: clamp(1.08rem, 1.8vw, 1.42rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.03em !important;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.30) !important;
+}
+
+#page-header:not(.full_page) {
+  height: 260px !important;
+}
+
+#page-header:not(.full_page)::before {
+  background: rgba(0, 0, 0, 0.10) !important;
+}
+
+#page-header:not(.full_page) #page-site-info,
+#page-header:not(.full_page) #site-info {
+  top: 50% !important;
+}
+
+#page-header:not(.full_page) #site-title,
+#page-header:not(.full_page) .page-title {
+  font-size: 1.72rem !important;
+  line-height: 1.25 !important;
+  font-family: var(--font-serif) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em !important;
+  color: #fff !important;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+}
+
+body:has(#post) #page-header #post-info {
+  top: 40% !important;
+  transform: translateY(-45%) !important;
+  padding-top: 0 !important;
+}
+
+
+/* =========================================================
+   4. 通用布局、纸面卡片与侧边栏
+   ========================================================= */
+
+.layout {
+  max-width: 1000px !important;
+  gap: 24px !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+#aside-content {
+  width: 250px !important;
+  max-width: 250px !important;
+}
+
+.card-widget,
+#aside-content .card-info,
+#aside-content .card-recent-post,
+#aside-content .card-tags {
+  border-radius: var(--radius) !important;
+  background: var(--paper) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+#aside-content .card-info,
+#aside-content .card-recent-post,
+#aside-content .card-tags {
+  padding: 0.9rem 0.8rem !important;
+}
+
+.card-info-avatar .avatar-img,
+.avatar-img {
+  width: 66px !important;
+  height: 66px !important;
+  box-shadow: 0 6px 18px rgba(28, 34, 42, 0.14) !important;
+}
+
+#aside-content .card-info .author-info__name {
+  font-family: var(--font-serif) !important;
+  font-size: 1.05rem !important;
+  font-weight: 620 !important;
+  color: var(--text) !important;
+}
+
+#aside-content .card-info .author-info__description {
+  margin-top: 0.12rem !important;
+  font-size: 0.78rem !important;
+  line-height: 1.5 !important;
+  color: var(--muted) !important;
+}
+
+#aside-content .site-data > a .headline {
+  font-size: 0.66rem !important;
+  font-weight: 480 !important;
+  color: var(--muted) !important;
+}
+
+#aside-content .site-data > a .length-num {
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  color: var(--text) !important;
+}
+
+#aside-content .item-headline {
+  margin-bottom: 0.58rem !important;
+}
+
+#aside-content .item-headline i {
+  font-size: 0.84rem !important;
+  margin-right: 5px !important;
+}
+
+#aside-content .item-headline span {
+  font-size: 0.86rem !important;
+  font-weight: 630 !important;
+  color: var(--text) !important;
+}
+
+.aside-list-item .thumbnail,
+.aside-list-item .thumbnail img {
+  width: 42px !important;
+  height: 42px !important;
+}
+
+.aside-list-item .thumbnail {
+  margin-right: 8px !important;
+}
+
+.aside-list-item .thumbnail img {
+  border-radius: 5px !important;
+}
+
+.aside-list-item .content .title {
+  font-size: 0.78rem !important;
+  font-weight: 550 !important;
+  line-height: 1.35 !important;
+  color: var(--text) !important;
+}
+
+.aside-list-item .content time {
+  font-size: 0.7rem !important;
+  line-height: 1.3 !important;
+  color: var(--muted) !important;
+}
+
+.card-tag-cloud a,
+#aside-content .card-tag-cloud a,
+#aside-content .card-tags .card-tag-cloud a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  height: auto !important;
+  padding: 0.14rem 0.48rem !important;
+  margin: 0.08rem 0.05rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(47, 58, 68, 0.14) !important;
+  background: rgba(250, 248, 243, 0.68) !important;
+  color: #3f4a56 !important;
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.card-tag-cloud a:hover,
+#aside-content .card-tag-cloud a:hover,
+#aside-content .card-tags .card-tag-cloud a:hover {
+  background: rgba(47, 58, 68, 0.10) !important;
+  color: #1f2933 !important;
+  border-color: rgba(47, 58, 68, 0.24) !important;
+}
+
+.card-tag-cloud a:active,
+.card-tag-cloud a:focus,
+.card-tag-cloud a:visited,
+#aside-content .card-tag-cloud a:active,
+#aside-content .card-tag-cloud a:focus,
+#aside-content .card-tag-cloud a:visited {
+  background: rgba(250, 248, 243, 0.68) !important;
+  color: #3f4a56 !important;
+  border-color: rgba(47, 58, 68, 0.14) !important;
+  outline: none !important;
+}
+
+.card-tag-cloud a sup,
+#aside-content .card-tag-cloud a sup {
+  margin-left: 2px !important;
+  color: #7a828c !important;
+  font-size: 0.68em !important;
+}
+
+
+/* =========================================================
+   5. 首页文章列表
+   统一左图右文，取消 Butterfly 左右交替
+   ========================================================= */
+
+#recent-posts {
+  width: 640px !important;
+  max-width: 640px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 18px !important;
+}
+
+#recent-posts > .recent-post-item {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 154px !important;
+  min-height: 154px !important;
+  display: block !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  border-radius: var(--radius) !important;
+  background: var(--paper) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: transform 0.22s ease, box-shadow 0.22s ease !important;
+}
+
+#recent-posts > .recent-post-item:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+
+#recent-posts .recent-post-arrow,
+#recent-posts .recent-post-arrow::before,
+#recent-posts .recent-post-arrow::after,
+#recent-posts > .recent-post-item::before,
+#recent-posts > .recent-post-item::after,
+#recent-posts .recent-post-content::before,
+#recent-posts .recent-post-content::after,
+#recent-posts .article-content::before,
+#recent-posts .article-content::after {
+  display: none !important;
+  content: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+#recent-posts > .recent-post-item .recent-post-content,
+#recent-posts > .recent-post-item .recent-post-content.left,
+#recent-posts > .recent-post-item .recent-post-content.right {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 154px !important;
+  min-height: 154px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+}
+
+#recent-posts > .recent-post-item .recent-post-cover {
+  order: 1 !important;
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  flex: 0 0 176px !important;
+  width: 176px !important;
+  max-width: 176px !important;
+  height: 154px !important;
+  min-height: 154px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  clip-path: none !important;
+  transform: none !important;
+}
+
+#recent-posts > .recent-post-item .recent-post-cover img.article-cover {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 154px !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 0 !important;
+  transform: none !important;
+  filter: saturate(0.96) contrast(1.02) brightness(1) !important;
+}
+
+#recent-posts > .recent-post-item:hover img.article-cover {
+  transform: scale(1.035) !important;
+  transition: transform 0.45s ease !important;
+}
+
+#recent-posts > .recent-post-item .recent-post-info {
+  order: 2 !important;
+  flex: 1 1 auto !important;
+  width: auto !important;
+  max-width: none !important;
+  height: 154px !important;
+  margin: 0 !important;
+  padding: 22px 30px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: left !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+#recent-posts > .recent-post-item .article-title,
+#recent-posts > .recent-post-item .article-title-link {
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  text-align: left !important;
+  font-family: var(--font-serif) !important;
+  font-size: 1.18rem !important;
+  font-weight: 650 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.01em !important;
+  color: var(--text) !important;
+}
+
+#recent-posts > .recent-post-item .recent-post-meta {
+  margin-top: 8px !important;
+  text-align: left !important;
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+#recent-posts .article-meta-wrap {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 4px 8px !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  line-height: 1.4 !important;
+}
+
+#recent-posts .article-meta-label {
+  display: none !important;
+}
+
+#recent-posts .post-meta-date i,
+#recent-posts .article-meta i,
+#recent-posts .article-meta svg,
+#recent-posts .meta_icon {
+  margin-right: 5px !important;
+  vertical-align: -1px !important;
+}
+
+#recent-posts .post-meta-date:nth-of-type(n+2) {
+  display: none !important;
+}
+
+#recent-posts > .recent-post-item .post-meta-date,
+#recent-posts > .recent-post-item .article-meta,
+#recent-posts > .recent-post-item .article-meta a,
+#recent-posts > .recent-post-item time {
+  font-size: 0.74rem !important;
+  font-weight: 430 !important;
+  line-height: 1.4 !important;
+  color: var(--muted) !important;
+}
+
+#recent-posts .article-meta-separator {
+  color: rgba(100, 110, 122, 0.35) !important;
+  margin: 0 2px !important;
+}
+
+#recent-posts > .recent-post-item .article-content {
+  display: none !important;
+}
+
+
+/* =========================================================
+   6. 文章详情页
+   保留右侧边栏，不把 aside 挤到下面
+   ========================================================= */
+
+body:has(#post) .layout {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  max-width: 1140px !important;
+  width: min(1140px, calc(100vw - 48px)) !important;
+  margin: 0 auto !important;
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+  gap: 24px !important;
+}
+
+body:has(#post) #post {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  max-width: 790px !important;
+  margin: 0 !important;
+  padding: 50px 60px !important;
+  border-radius: var(--radius) !important;
+  background: var(--paper-strong) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 14px 36px rgba(28, 34, 42, 0.12) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body:has(#post) #aside-content {
+  flex: 0 0 260px !important;
+  width: 260px !important;
+  max-width: 260px !important;
+  margin: 0 !important;
+}
+
+#article-container {
+  font-family: var(--font-article) !important;
+  font-size: 1rem !important;
+  line-height: 1.95 !important;
+  letter-spacing: 0.018em !important;
+  color: #2c323a !important;
+}
+
+#article-container p {
+  margin: 0 0 1.35rem 0 !important;
+}
+
+#article-container > p:first-of-type {
+  font-size: 1.04rem !important;
+  line-height: 1.98 !important;
+  color: #252b33 !important;
+}
+
+#article-container h2 {
+  margin: 2.8rem 0 1.1rem 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-serif) !important;
+  font-size: 1.28rem !important;
+  font-weight: 650 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.025em !important;
+  color: var(--text) !important;
+  border-bottom: none !important;
+}
+
+#article-container h2::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 1px;
+  margin-bottom: 16px;
+  background: rgba(36, 42, 49, 0.35);
+}
+
+#article-container h3 {
+  margin: 2rem 0 0.8rem 0 !important;
+  font-size: 1.08rem !important;
+  font-weight: 620 !important;
+  color: #303741 !important;
+}
+
+#article-container blockquote {
+  margin: 1.8rem 0 !important;
+  padding: 0.95rem 1.25rem !important;
+  border-left: 2px solid rgba(47, 58, 68, 0.36) !important;
+  border-radius: 0 !important;
+  background: rgba(255, 255, 255, 0.36) !important;
+  color: #4f5965 !important;
+  font-size: 0.98rem !important;
+  line-height: 1.9 !important;
+}
+
+#article-container blockquote p {
+  margin-bottom: 0 !important;
+}
+
+#article-container img {
+  display: block !important;
+  max-width: 100% !important;
+  margin: 2rem auto !important;
+  border-radius: 4px !important;
+  box-shadow: 0 10px 28px rgba(28, 34, 42, 0.12) !important;
+}
+
+#article-container .image-caption,
+#article-container figcaption {
+  margin-top: -1.2rem !important;
+  margin-bottom: 1.8rem !important;
+  text-align: center !important;
+  font-size: 0.8rem !important;
+  color: #7a828c !important;
+}
+
+#article-container ul,
+#article-container ol {
+  margin: 1rem 0 1.4rem 1.2rem !important;
+  padding-left: 1rem !important;
+}
+
+#article-container li {
+  margin-bottom: 0.45rem !important;
+  line-height: 1.9 !important;
+}
+
+#article-container code {
+  padding: 0.12rem 0.34rem !important;
+  border-radius: 4px !important;
+  background: rgba(47, 58, 68, 0.08) !important;
+  color: #3c4754 !important;
+  font-size: 0.88em !important;
+}
+
+#article-container figure.highlight,
+#article-container pre {
+  border-radius: 8px !important;
+  background: rgba(36, 42, 49, 0.92) !important;
+  box-shadow: 0 10px 28px rgba(28, 34, 42, 0.14) !important;
+}
+
+#article-container hr {
+  margin: 2.4rem auto !important;
+  width: 42% !important;
+  border: none !important;
+  border-top: 1px solid rgba(36, 42, 49, 0.18) !important;
+}
+
+#article-container a {
+  color: #2f3a44 !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 4px !important;
+}
+
+#article-container a:hover {
+  color: #000 !important;
+}
+
+#post .post-copyright,
+#post .tag_share,
+#post .post-reward {
+  margin-top: 2.4rem !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.36) !important;
+  border: 1px solid rgba(36, 42, 49, 0.08) !important;
+}
+
+#pagination.pagination-post {
+  margin-top: 2.4rem !important;
+  border-radius: var(--radius) !important;
+  overflow: hidden !important;
+  background: var(--paper) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+#pagination.pagination-post .prev-post,
+#pagination.pagination-post .next-post,
+#pagination.pagination-post .prev-post a,
+#pagination.pagination-post .next-post a {
+  background: var(--paper) !important;
+  color: var(--text) !important;
+}
+
+
+#pagination.pagination-post img {
+  opacity: 0.88 !important;
+  filter: saturate(0.95) contrast(1.02) brightness(1) !important;
+}
+
+#pagination.pagination-post .label,
+#pagination.pagination-post .prev_info,
+#pagination.pagination-post .next_info,
+#pagination.pagination-post .pull-left,
+#pagination.pagination-post .pull-right {
+  color: var(--text) !important;
+  text-shadow: none !important;
+}
+
+#pagination.pagination-post .prev-post:empty,
+#pagination.pagination-post .next-post:empty {
+  display: none !important;
+}
+
+#pagination.pagination-post .prev-post:only-child,
+#pagination.pagination-post .next-post:only-child {
+  width: 100% !important;
+}
+
+
+/* =========================================================
+   7. 归档页
+   ========================================================= */
+
+.layout:has(#archive) {
+  max-width: 780px !important;
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+  margin: 0 auto !important;
+}
+
+#archive {
+  width: 100% !important;
+  max-width: 730px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  display: block !important;
+  margin: 0 auto 2rem auto !important;
+  padding: 30px 50px !important;
+  border-radius: var(--radius) !important;
+  background: rgba(250, 248, 243, 0.94) !important;
+  border: 1px solid rgba(36, 42, 49, 0.12) !important;
+  box-shadow: 0 14px 36px rgba(28, 34, 42, 0.14) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+#archive .article-sort-title,
+#archive .archive-title {
+  position: relative !important;
+  top: auto !important;
+  transform: none !important;
+  font-size: 1.22rem !important;
+  font-weight: 650 !important;
+  color: var(--text) !important;
+  margin: 0 0 20px 0 !important;
+  letter-spacing: 0.02em !important;
+}
+
+#archive .article-sort {
+  position: relative !important;
+  top: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  border-left: 1px solid rgba(36, 42, 49, 0.16) !important;
+  padding-left: 24px !important;
+}
+
+#archive .article-sort-item.year {
+  font-size: 1rem !important;
+  font-weight: 650 !important;
+  color: var(--text) !important;
+  margin: 1.1rem 0 0.9rem 0 !important;
+}
+
+#archive .article-sort-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  min-height: 66px !important;
+  margin: 0 0 16px 0 !important;
+  padding: 0 !important;
+  color: var(--text) !important;
+}
+
+#archive .article-sort-item::before {
+  left: -30px !important;
+  width: 8px !important;
+  height: 8px !important;
+  border: 2px solid #2f3a44 !important;
+  background: #faf8f3 !important;
+}
+
+#archive .article-sort-item-img,
+#archive .article-sort-item-img img {
+  width: 58px !important;
+  height: 58px !important;
+  flex: 0 0 58px !important;
+  border-radius: 6px !important;
+}
+
+#archive .article-sort-item-img {
+  overflow: hidden !important;
+  margin: 0 !important;
+}
+
+#archive .article-sort-item-img img {
+  object-fit: cover !important;
+  filter: saturate(0.95) contrast(1.02) !important;
+}
+
+#archive .article-sort-item-info {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+#archive .article-sort-item-time {
+  font-size: 0.76rem !important;
+  color: #7a828c !important;
+  line-height: 1.4 !important;
+  margin-bottom: 3px !important;
+}
+
+#archive .article-sort-item-title {
+  font-size: 0.92rem !important;
+  font-weight: 560 !important;
+  color: var(--text) !important;
+  line-height: 1.45 !important;
+  text-decoration: none !important;
+}
+
+#archive .article-sort-item-title:hover {
+  color: #000 !important;
+}
+
+#archive #pagination,
+#pagination {
+  margin-top: 1.6rem !important;
+  text-align: center !important;
+}
+
+#pagination .page-number,
+#pagination .extend {
+  min-width: 28px !important;
+  height: 28px !important;
+  line-height: 28px !important;
+  font-size: 0.78rem !important;
+  border-radius: 6px !important;
+  background: rgba(250, 248, 243, 0.92) !important;
+  color: #2f3a44 !important;
+}
+
+#pagination .page-number.current {
+  background: #2f3a44 !important;
+  color: #fff !important;
+}
+
+
+/* =========================================================
+   8. 普通页面：tags / categories / link / about
+   需要 page.pug 给 #page 添加 page-container page-xxx 类
+   ========================================================= */
+
+body:has(#page.page-container) .layout {
+  max-width: 1000px !important;
+  width: min(1000px, calc(100vw - 48px)) !important;
+  margin: 0 auto !important;
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: 24px !important;
+}
+
+#page.page-container {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  max-width: 670px !important;
+  min-height: 260px !important;
+  margin: 0 !important;
+  padding: 34px 40px !important;
+  border-radius: 12px !important;
+  background: rgba(250, 248, 243, 0.90) !important;
+  border: 1px solid rgba(36, 42, 49, 0.10) !important;
+  box-shadow: 0 12px 32px rgba(28, 34, 42, 0.12) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body:has(#page.page-container) #aside-content {
+  flex: 0 0 250px !important;
+  width: 250px !important;
+  max-width: 250px !important;
+  margin: 0 !important;
+}
+
+#page.page-container .page-title,
+#page.page-tags .page-main::before,
+#page.page-categories .page-main::before {
+  margin: 0 0 16px 0 !important;
+  font-family: var(--font-serif) !important;
+  font-size: 1.32rem !important;
+  font-weight: 650 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--text) !important;
+}
+
+#page.page-container .page-main {
+  color: #303741 !important;
+  font-size: 0.96rem !important;
+  line-height: 1.82 !important;
+}
+
+#page.page-container a {
+  color: #2f3a44 !important;
+  text-decoration: none !important;
+}
+
+#page.page-container a:hover {
+  color: #000 !important;
+}
+
+#page.page-tags .page-main::before {
+  content: "Tags";
+  display: block;
+}
+
+#page.page-tags .page-main::after {
+  content: "A quiet index of recurring subjects, fragments, and notes.";
+  display: block;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(36, 42, 49, 0.12);
+  font-size: 0.82rem !important;
+  line-height: 1.7 !important;
+  color: #7a828c !important;
+}
+
+#page.page-tags .tag-cloud-list,
+#page.page-tags .tag-cloud-list.is-center {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 10px 8px !important;
+  margin: 22px 0 0 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+#page.page-tags .tag-cloud-list a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0.34rem 0.78rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(36, 42, 49, 0.14) !important;
+  background: rgba(255, 255, 255, 0.46) !important;
+  color: #2f3a44 !important;
+  font-family: var(--font-ui) !important;
+  font-size: 0.86rem !important;
+  font-weight: 540 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.01em !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease !important;
+}
+
+#page.page-tags .tag-cloud-list a sup {
+  margin-left: 4px !important;
+  color: #8a929c !important;
+  font-size: 0.68em !important;
+  font-weight: 500 !important;
+}
+
+#page.page-tags .tag-cloud-list a:hover {
+  background: rgba(47, 58, 68, 0.10) !important;
+  border-color: rgba(47, 58, 68, 0.26) !important;
+  color: #111820 !important;
+  transform: translateY(-1px) !important;
+}
+
+#page.page-tags .tag-cloud-list a:active,
+#page.page-tags .tag-cloud-list a:focus,
+#page.page-tags .tag-cloud-list a:visited {
+  background: rgba(255, 255, 255, 0.46) !important;
+  border-color: rgba(36, 42, 49, 0.14) !important;
+  color: #2f3a44 !important;
+  outline: none !important;
+}
+
+#page.page-categories .page-main::before {
+  content: "Categories";
+  display: block;
+}
+
+#page.page-categories .page-main::after {
+  content: "A restrained map of writings, notes, and recurring directions.";
+  display: block;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(36, 42, 49, 0.12);
+  font-size: 0.82rem !important;
+  line-height: 1.7 !important;
+  color: #7a828c !important;
+}
+
+#page.page-categories .category-lists {
+  margin-top: 22px !important;
+  padding: 0 !important;
+}
+
+#page.page-categories .category-list {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+#page.page-categories .category-list-item {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin: 0 0 10px 0 !important;
+  padding: 11px 15px !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.42) !important;
+  border: 1px solid rgba(36, 42, 49, 0.09) !important;
+  box-shadow: none !important;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease !important;
+}
+
+#page.page-categories .category-list-item:hover {
+  background: rgba(255, 255, 255, 0.58) !important;
+  border-color: rgba(36, 42, 49, 0.16) !important;
+  transform: translateY(-1px) !important;
+}
+
+#page.page-categories .category-list-link {
+  color: var(--text) !important;
+  font-family: var(--font-ui) !important;
+  font-size: 0.94rem !important;
+  font-weight: 560 !important;
+  line-height: 1.4 !important;
+  text-decoration: none !important;
+}
+
+#page.page-categories .category-list-item::before,
+#page.page-categories .category-list-link::before {
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;
+  min-height: 8px !important;
+  margin-right: 8px !important;
+  border-width: 2px !important;
+  border-radius: 50% !important;
+  transform: none !important;
+}
+
+#page.page-categories .category-list-count {
+  min-width: 22px !important;
+  width: 22px !important;
+  height: 22px !important;
+  padding: 0 !important;
+  margin-left: 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  background: rgba(47, 58, 68, 0.08) !important;
+  color: var(--muted) !important;
+  font-size: 0.74rem !important;
+  font-weight: 500 !important;
+  line-height: 22px !important;
+}
+
+#page.page-categories .category-list-count::before,
+#page.page-categories .category-list-count::after {
+  content: none !important;
+}
+
+#page.page-categories .category-list-child {
+  margin: 10px 0 0 18px !important;
+  padding-left: 14px !important;
+  border-left: 1px solid rgba(36, 42, 49, 0.12) !important;
+  list-style: none !important;
+}
+
+#page.page-categories .category-list-child .category-list-item {
+  margin-bottom: 8px !important;
+  padding: 10px 14px !important;
+  background: rgba(255, 255, 255, 0.30) !important;
+}
+
+#page.page-categories .category-list-child .category-list-link {
+  font-size: 0.86rem !important;
+  color: #4f5863 !important;
+}
+
+#page.page-link .flink-list,
+#page.page-link .flink-list-item {
+  border-radius: var(--radius) !important;
+}
+
+#page.page-link .flink-list-item {
+  background: rgba(255, 255, 255, 0.42) !important;
+  border: 1px solid rgba(36, 42, 49, 0.08) !important;
+  box-shadow: none !important;
+}
+
+#page.page-link .flink-list-item:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 24px rgba(28, 34, 42, 0.10) !important;
+}
+
+#page.page-link .flink-item-name {
+  font-size: 0.94rem !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+}
+
+#page.page-link .flink-item-desc {
+  font-size: 0.78rem !important;
+  color: #747d88 !important;
+}
+
+#page.page-default #article-container,
+#page.page-container #article-container {
+  font-size: 0.96rem !important;
+  line-height: 1.9 !important;
+  color: #303741 !important;
+}
+
+#page.page-default #article-container h1,
+#page.page-default #article-container h2,
+#page.page-default #article-container h3,
+#page.page-container #article-container h1,
+#page.page-container #article-container h2,
+#page.page-container #article-container h3 {
+  color: var(--text) !important;
+  font-weight: 650 !important;
+}
+
+#page.page-container + #post-comment,
+#page.page-container #post-comment {
+  margin-top: 2rem !important;
+}
+
+
+/* =========================================================
+   9. 右侧按钮、搜索框、页脚
+   ========================================================= */
+
+#rightside {
+  right: 20px !important;
+}
+
+#rightside > div > button,
+#rightside > div > a {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 8px !important;
+  background: var(--paper) !important;
+  color: #3b4652 !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 8px 20px rgba(28, 34, 42, 0.12) !important;
+}
+
+#rightside > div > button:hover,
+#rightside > div > a:hover {
+  background: #2f3a44 !important;
+  color: #fff !important;
+}
+
+.search-dialog {
+  border-radius: var(--radius) !important;
+  background: var(--paper-solid) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 24px 60px rgba(28, 34, 42, 0.18) !important;
+}
+
+.local-search-box--input {
+  border-radius: 8px !important;
+}
+
+#footer {
+  background: transparent !important;
+}
+
+#footer-wrap,
+.footer-simple {
+  font-size: 0.78rem !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  padding: 12px 0 16px !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.36) !important;
+}
+
+.footer-simple .footer-line {
+  font-size: 0.78rem !important;
+  line-height: 1.7 !important;
+}
+
+
+/* =========================================================
+   10. 深色模式
+   ========================================================= */
+
+[data-theme='dark'] {
+  --paper: rgba(28, 32, 38, 0.90);
+  --paper-strong: rgba(28, 32, 38, 0.92);
+  --paper-solid: #1c2026;
+  --text: #e5e8ec;
+  --text-strong: #ffffff;
+  --muted: #aeb6c0;
+  --muted-light: #9ea7b1;
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --shadow: 0 14px 38px rgba(0, 0, 0, 0.26);
+  --shadow-hover: 0 18px 48px rgba(0, 0, 0, 0.36);
+}
+
+[data-theme='dark'] #web_bg {
+  background-image: url("/assets/love.png") !important;
+  filter: brightness(0.78) contrast(0.98) !important;
+}
+
+[data-theme='dark'] #nav.nav-scrolled {
+  background: rgba(28, 32, 38, 0.94) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+[data-theme='dark'] #nav.nav-scrolled #site-name,
+[data-theme='dark'] #nav.nav-scrolled .site-page,
+[data-theme='dark'] #nav.nav-scrolled .menus_item > a,
+[data-theme='dark'] #nav.nav-scrolled #search-button a,
+[data-theme='dark'] #nav.nav-scrolled #nav-right a,
+[data-theme='dark'] #nav.nav-scrolled #nav-right i,
+[data-theme='dark'] #nav.nav-scrolled #nav-right span,
+[data-theme='dark'] #nav.nav-scrolled #page-name,
+[data-theme='dark'] #recent-posts .article-title,
+[data-theme='dark'] #recent-posts .article-title-link,
+[data-theme='dark'] #aside-content .card-info .author-info__name,
+[data-theme='dark'] #aside-content .item-headline span,
+[data-theme='dark'] .aside-list-item .content .title,
+[data-theme='dark'] #page.page-container .page-title,
+[data-theme='dark'] #page.page-tags .page-main::before,
+[data-theme='dark'] #page.page-categories .page-main::before {
+  color: var(--text) !important;
+}
+
+[data-theme='dark'] #recent-posts .article-content-text,
+[data-theme='dark'] #recent-posts .article-meta-wrap,
+[data-theme='dark'] #recent-posts .post-meta-date,
+[data-theme='dark'] #recent-posts .article-meta,
+[data-theme='dark'] #recent-posts .article-meta a,
+[data-theme='dark'] #recent-posts .article-meta-label,
+[data-theme='dark'] #aside-content .card-info .author-info__description,
+[data-theme='dark'] .aside-list-item .content time,
+[data-theme='dark'] #page.page-tags .page-main::after,
+[data-theme='dark'] #page.page-categories .page-main::after {
+  color: var(--muted) !important;
+}
+
+[data-theme='dark'] .card-tag-cloud a,
+[data-theme='dark'] #aside-content .card-tag-cloud a,
+[data-theme='dark'] #page.page-tags .tag-cloud-list a {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #d7dde5 !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+[data-theme='dark'] .card-tag-cloud a:hover,
+[data-theme='dark'] #aside-content .card-tag-cloud a:hover,
+[data-theme='dark'] #page.page-tags .tag-cloud-list a:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.26) !important;
+}
+
+[data-theme='dark'] #article-container,
+[data-theme='dark'] #article-container > p:first-of-type {
+  color: #dce1e7 !important;
+}
+
+[data-theme='dark'] #article-container blockquote {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #c2cad4 !important;
+}
+
+
+/* =========================================================
+   11. 响应式
+   ========================================================= */
+
+@media screen and (max-width: 900px) {
+  body:has(#post) .layout,
+  body:has(#page.page-container) .layout {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  body:has(#post) #post,
+  #page.page-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 34px 26px !important;
+  }
+
+  body:has(#post) #aside-content,
+  body:has(#page.page-container) #aside-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 24px !important;
+  }
+
+  #page.page-tags .page-main::before,
+  #page.page-categories .page-main::before {
+    font-size: 1.18rem !important;
+  }
+
+  #page.page-categories .category-list-item {
+    padding: 10px 12px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html,
+  body {
+    font-size: 14px !important;
+  }
+
+  #nav {
+    height: 58px !important;
+    line-height: 58px !important;
+    padding: 0 18px !important;
+  }
+
+  #site-name {
+    font-size: 1.16rem !important;
+  }
+
+  #menus .menus_items {
+    gap: 16px !important;
+  }
+
+  .layout,
+  #recent-posts,
+  #aside-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  #page-header:not(.full_page) {
+    height: 220px !important;
+  }
+
+  #recent-posts > .recent-post-item,
+  #recent-posts .recent-post-content,
+  #recent-posts .recent-post-content.left,
+  #recent-posts .recent-post-content.right {
+    height: auto !important;
+    min-height: auto !important;
+    display: block !important;
+  }
+
+  #recent-posts > .recent-post-item .recent-post-cover {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 190px !important;
+    min-height: 190px !important;
+    flex-basis: auto !important;
+  }
+
+  #recent-posts > .recent-post-item .recent-post-cover img.article-cover {
+    height: 190px !important;
+    min-height: 190px !important;
+  }
+
+  #recent-posts > .recent-post-item .recent-post-info {
+    height: auto !important;
+    padding: 20px 22px !important;
+  }
+
+  #recent-posts > .recent-post-item .article-title,
+  #recent-posts > .recent-post-item .article-title-link {
+    font-size: 1.1rem !important;
+  }
+
+  .layout:has(#archive) {
+    max-width: 100% !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  #archive {
+    max-width: 100% !important;
+    padding: 28px 24px !important;
+  }
+
+  #archive .article-sort {
+    padding-left: 20px !important;
+  }
+
+  #archive .article-sort-item {
+    gap: 12px !important;
+  }
+
+  #archive .article-sort-item-img,
+  #archive .article-sort-item-img img {
+    width: 54px !important;
+    height: 54px !important;
+    flex-basis: 54px !important;
+  }
+
+  #article-container {
+    font-size: 0.98rem !important;
+    line-height: 1.9 !important;
+  }
+
+  #article-container h2 {
+    font-size: 1.16rem !important;
+  }
+}
+
+/* =========================================================
+   Post Pagination — Gallery Index Style
+   文章页底部上一篇 / 下一篇：克制、清爽、文字与图片分离
+   放在 source/css/custom.css 最末尾
+   ========================================================= */
+
+/* 外层：不要大黑块，不要整块阴影 */
+#pagination.pagination-post {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+
+  margin: 2.6rem 0 0 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* 每一张上一篇/下一篇卡片 */
+#pagination.pagination-post .prev-post,
+#pagination.pagination-post .next-post {
+  position: relative !important;
+
+  width: 100% !important;
+  height: auto !important;
+  min-height: 118px !important;
+
+  overflow: hidden !important;
+  border-radius: 10px !important;
+
+  background: rgba(250, 248, 243, 0.92) !important;
+  border: 1px solid rgba(36, 42, 49, 0.10) !important;
+  box-shadow: 0 10px 24px rgba(28, 34, 42, 0.08) !important;
+
+  transition: transform 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+/* 空的一边直接隐藏 */
+#pagination.pagination-post .prev-post:empty,
+#pagination.pagination-post .next-post:empty {
+  display: none !important;
+}
+
+/* 链接本体：文字左、图片右 */
+#pagination.pagination-post .prev-post a,
+#pagination.pagination-post .next-post a {
+  position: relative !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+
+  min-height: 118px !important;
+  padding: 24px 210px 24px 30px !important;
+
+  overflow: hidden !important;
+  text-decoration: none !important;
+
+  background-color: rgba(250, 248, 243, 0.94) !important;
+  background-size: 180px 100% !important;
+  background-position: right center !important;
+  background-repeat: no-repeat !important;
+
+  color: #242a31 !important;
+}
+
+/* 图片元素版本：固定成右侧小图 */
+#pagination.pagination-post .prev-post a img,
+#pagination.pagination-post .next-post a img {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+
+  width: 180px !important;
+  height: 100% !important;
+
+  object-fit: cover !important;
+  object-position: center center !important;
+
+  opacity: 0.92 !important;
+  filter: saturate(0.95) contrast(1.02) brightness(1) !important;
+
+  z-index: 1 !important;
+}
+
+/* 图片和文字之间加一层浅色过渡，避免硬切 */
+#pagination.pagination-post .prev-post a::before,
+#pagination.pagination-post .next-post a::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 135px !important;
+  bottom: 0 !important;
+
+  width: 95px !important;
+
+  background: linear-gradient(
+    90deg,
+    rgba(250, 248, 243, 0.96) 0%,
+    rgba(250, 248, 243, 0.82) 45%,
+    rgba(250, 248, 243, 0.12) 100%
+  ) !important;
+
+  z-index: 2 !important;
+  pointer-events: none !important;
+}
+
+/* 取消主题原来的黑色遮罩 */
+#pagination.pagination-post .prev-post a::after,
+#pagination.pagination-post .next-post a::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 小标签：NEXT POST / PREV POST */
+#pagination.pagination-post .label {
+  position: relative !important;
+  z-index: 3 !important;
+
+  display: block !important;
+
+  margin: 0 0 8px 0 !important;
+  padding: 0 !important;
+
+  color: #7a828c !important;
+
+  font-family: var(--font-ui) !important;
+  font-size: 0.72rem !important;
+  font-weight: 620 !important;
+  line-height: 1.2 !important;
+
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+
+  text-align: left !important;
+  text-shadow: none !important;
+}
+
+/* 标题 */
+#pagination.pagination-post .prev_info,
+#pagination.pagination-post .next_info {
+  position: relative !important;
+  z-index: 3 !important;
+
+  display: block !important;
+
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: #242a31 !important;
+
+  font-family: var(--font-serif) !important;
+  font-size: 1.18rem !important;
+  font-weight: 650 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.01em !important;
+
+  text-align: left !important;
+  text-shadow: none !important;
+
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+/* 兼容 Butterfly 可能带的左右浮动类 */
+#pagination.pagination-post .pull-left,
+#pagination.pagination-post .pull-right {
+  float: none !important;
+  text-align: left !important;
+  color: inherit !important;
+  text-shadow: none !important;
+}
+
+/* 悬停效果：轻一点，不要花 */
+#pagination.pagination-post .prev-post:hover,
+#pagination.pagination-post .next-post:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 30px rgba(28, 34, 42, 0.12) !important;
+}
+
+#pagination.pagination-post .prev-post:hover img,
+#pagination.pagination-post .next-post:hover img {
+  filter: saturate(1) contrast(1.04) brightness(1.02) !important;
+}
+
+/* 图片是背景图而不是 img 的情况 */
+#pagination.pagination-post .prev-post,
+#pagination.pagination-post .next-post,
+#pagination.pagination-post .prev-post a,
+#pagination.pagination-post .next-post a {
+  background-blend-mode: normal !important;
+}
+
+/* 深色模式 */
+[data-theme='dark'] #pagination.pagination-post .prev-post,
+[data-theme='dark'] #pagination.pagination-post .next-post,
+[data-theme='dark'] #pagination.pagination-post .prev-post a,
+[data-theme='dark'] #pagination.pagination-post .next-post a {
+  background-color: rgba(28, 32, 38, 0.92) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+[data-theme='dark'] #pagination.pagination-post .prev-post a::before,
+[data-theme='dark'] #pagination.pagination-post .next-post a::before {
+  background: linear-gradient(
+    90deg,
+    rgba(28, 32, 38, 0.96) 0%,
+    rgba(28, 32, 38, 0.82) 45%,
+    rgba(28, 32, 38, 0.12) 100%
+  ) !important;
+}
+
+[data-theme='dark'] #pagination.pagination-post .label {
+  color: #aeb6c0 !important;
+}
+
+[data-theme='dark'] #pagination.pagination-post .prev_info,
+[data-theme='dark'] #pagination.pagination-post .next_info {
+  color: #e5e8ec !important;
+}
+
+/* 移动端：图片缩到顶部，文字在下面 */
+@media screen and (max-width: 768px) {
+  #pagination.pagination-post .prev-post a,
+  #pagination.pagination-post .next-post a {
+    min-height: auto !important;
+    padding: 128px 22px 22px 22px !important;
+
+    background-size: 100% 110px !important;
+    background-position: top center !important;
+  }
+
+  #pagination.pagination-post .prev-post a img,
+  #pagination.pagination-post .next-post a img {
+    top: 0 !important;
+    left: 0 !important;
+    right: auto !important;
+
+    width: 100% !important;
+    height: 110px !important;
+  }
+
+  #pagination.pagination-post .prev-post a::before,
+  #pagination.pagination-post .next-post a::before {
+    top: 76px !important;
+    right: 0 !important;
+    left: 0 !important;
+    bottom: auto !important;
+
+    width: 100% !important;
+    height: 56px !important;
+
+    background: linear-gradient(
+      180deg,
+      rgba(250, 248, 243, 0.10) 0%,
+      rgba(250, 248, 243, 0.88) 70%,
+      rgba(250, 248, 243, 0.96) 100%
+    ) !important;
+  }
+
+  #pagination.pagination-post .prev_info,
+  #pagination.pagination-post .next_info {
+    font-size: 1.05rem !important;
+  }
+}
+
+
+/* =========================================================
+   12. 只改字号 + 修复下滑箭头重叠
+   不修改导航栏样式
+   ========================================================= */
+
+/* ---------- 12.1 全局字号略放大 ---------- */
+
+html {
+  font-size: 16px !important;
+  scroll-padding-top: 90px !important;
+}
+
+body {
+  font-size: 16px !important;
+  line-height: 1.76 !important;
+}
+
+/* ---------- 12.2 修复点击下滑箭头后内容被导航栏遮住 ---------- */
+
+/* 针对锚点跳转 */
+#content-inner,
+.layout,
+#recent-posts,
+#aside-content,
+#post,
+#page,
+#archive {
+  scroll-margin-top: 90px !important;
+}
+
+/* 针对 Butterfly 下滑箭头的 JS 滚动：给首页内容顶部留出导航栏高度 */
+body:has(#recent-posts) #content-inner {
+  padding-top: 76px !important;
+}
+
+/* 避免内容整体被撑得太靠下，只让首页生效 */
+body:not(:has(#recent-posts)) #content-inner {
+  padding-top: initial;
+}
+
+/* ---------- 12.3 首页文章列表字号放大 ---------- */
+
+#recent-posts > .recent-post-item {
+  height: 172px !important;
+  min-height: 172px !important;
+}
+
+#recent-posts > .recent-post-item .recent-post-content,
+#recent-posts > .recent-post-item .recent-post-content.left,
+#recent-posts > .recent-post-item .recent-post-content.right {
+  height: 172px !important;
+  min-height: 172px !important;
+}
+
+#recent-posts > .recent-post-item .recent-post-cover {
+  height: 172px !important;
+  min-height: 172px !important;
+}
+
+#recent-posts > .recent-post-item .recent-post-cover img.article-cover {
+  height: 172px !important;
+  min-height: 172px !important;
+}
+
+#recent-posts > .recent-post-item .recent-post-info {
+  height: 172px !important;
+  padding: 26px 34px !important;
+}
+
+#recent-posts > .recent-post-item .article-title,
+#recent-posts > .recent-post-item .article-title-link {
+  font-size: 1.34rem !important;
+  font-weight: 700 !important;
+  line-height: 1.42 !important;
+  letter-spacing: 0.018em !important;
+}
+
+#recent-posts > .recent-post-item .recent-post-meta {
+  margin-top: 13px !important;
+}
+
+#recent-posts > .recent-post-item .post-meta-date,
+#recent-posts > .recent-post-item .article-meta,
+#recent-posts > .recent-post-item .article-meta a,
+#recent-posts > .recent-post-item time {
+  font-size: 0.86rem !important;
+  font-weight: 460 !important;
+  line-height: 1.5 !important;
+}
+
+/* ---------- 12.4 侧边栏字号放大 ---------- */
+
+#aside-content .card-info .author-info__name {
+  font-size: 1.24rem !important;
+  font-weight: 700 !important;
+}
+
+#aside-content .card-info .author-info__description {
+  font-size: 0.9rem !important;
+  line-height: 1.68 !important;
+}
+
+#aside-content .site-data > a .headline {
+  font-size: 0.82rem !important;
+}
+
+#aside-content .site-data > a .length-num {
+  font-size: 1.08rem !important;
+  font-weight: 600 !important;
+}
+
+#aside-content .item-headline span {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+}
+
+#aside-content .item-headline i {
+  font-size: 1rem !important;
+}
+
+.aside-list-item .content .title {
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  line-height: 1.42 !important;
+}
+
+.aside-list-item .content time {
+  font-size: 0.8rem !important;
+}
+
+.card-tag-cloud a,
+#aside-content .card-tag-cloud a,
+#aside-content .card-tags .card-tag-cloud a {
+  font-size: 0.84rem !important;
+  padding: 0.22rem 0.62rem !important;
+}
+
+/* ---------- 12.5 分页数字放大一点 ---------- */
+
+#pagination .page-number,
+#pagination .extend {
+  min-width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+  font-size: 0.9rem !important;
+}
+
+/* ---------- 12.6 文章页字号同步略放大 ---------- */
+
+#article-container {
+  font-size: 1.04rem !important;
+  line-height: 2.02 !important;
+}
+
+#article-container > p:first-of-type {
+  font-size: 1.08rem !important;
+}
+
+#article-container h2 {
+  font-size: 1.36rem !important;
+}
+
+#article-container h3 {
+  font-size: 1.15rem !important;
+}
+
+/* ---------- 12.7 移动端 ---------- */
+
+@media screen and (max-width: 900px) {
+  html {
+    scroll-padding-top: 78px !important;
+  }
+
+  #content-inner,
+  .layout,
+  #recent-posts,
+  #aside-content,
+  #post,
+  #page,
+  #archive {
+    scroll-margin-top: 78px !important;
+  }
+
+  body:has(#recent-posts) #content-inner {
+    padding-top: 56px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html,
+  body {
+    font-size: 15px !important;
+  }
+
+  #recent-posts > .recent-post-item,
+  #recent-posts .recent-post-content,
+  #recent-posts .recent-post-content.left,
+  #recent-posts .recent-post-content.right {
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  #recent-posts > .recent-post-item .recent-post-cover {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 205px !important;
+    min-height: 205px !important;
+    flex-basis: auto !important;
+  }
+
+  #recent-posts > .recent-post-item .recent-post-cover img.article-cover {
+    height: 205px !important;
+    min-height: 205px !important;
+  }
+
+  #recent-posts > .recent-post-item .recent-post-info {
+    height: auto !important;
+    padding: 22px 24px !important;
+  }
+
+  #recent-posts > .recent-post-item .article-title,
+  #recent-posts > .recent-post-item .article-title-link {
+    font-size: 1.22rem !important;
+  }
+
+  #recent-posts > .recent-post-item .post-meta-date,
+  #recent-posts > .recent-post-item .article-meta,
+  #recent-posts > .recent-post-item .article-meta a,
+  #recent-posts > .recent-post-item time {
+    font-size: 0.82rem !important;
+  }
+
+  #article-container {
+    font-size: 1rem !important;
+    line-height: 1.95 !important;
+  }
+}
+/* =========================================================
+   Clean Footer
+   去掉默认 2026 / 爱心 / Powered by Hexo 等页脚内容
+   ========================================================= */
+
+#footer {
+  background: transparent !important;
+}
+
+#footer-wrap {
+  padding: 8px 0 16px !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  color: transparent !important;
+  text-shadow: none !important;
+}
+
+#footer-wrap * {
+  display: none !important;
+}
+
+#footer-wrap::before {
+  content: "ordinary days, gentle records.";
+  display: block;
+  font-size: 0.82rem !important;
+  line-height: 1.7 !important;
+  letter-spacing: 0.08em !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+  text-align: center !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.32) !important;
+}
+/* =========================================================
+   Footer Kawaii Marquee
+   页尾图片跑马灯
+   ========================================================= */
+
+#footer {
+  position: relative !important;
+  margin-top: 28px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  overflow: hidden !important;
+}
+
+/* 旧的默认 footer 不再需要 */
+#footer-wrap,
+.footer-simple {
+  display: none !important;
+}
+
+.footer-kawaii-marquee {
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+
+  height: 48px !important;
+  overflow: hidden !important;
+
+  display: flex !important;
+  align-items: center !important;
+
+  background: rgba(250, 248, 243, 0.92) !important;
+  border-top: 1px solid rgba(36, 42, 49, 0.50) !important;
+  border-bottom: 1px solid rgba(36, 42, 49, 0.50) !important;
+
+  box-shadow: 0 -4px 18px rgba(28, 34, 42, 0.08) !important;
+}
+
+.footer-kawaii-track {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 28px !important;
+
+  width: max-content !important;
+  white-space: nowrap !important;
+
+  animation: footerKawaiiMarquee 30s linear infinite !important;
+}
+
+.footer-kawaii-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+
+  color: rgba(47, 43, 39, 0.78) !important;
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif !important;
+
+  font-size: 0.88rem !important;
+  font-weight: 650 !important;
+  line-height: 48px !important;
+  letter-spacing: 0.06em !important;
+}
+
+.footer-kawaii-item img {
+  width: 28px !important;
+  height: 28px !important;
+  object-fit: contain !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.footer-kawaii-marquee:hover .footer-kawaii-track {
+  animation-play-state: paused !important;
+}
+
+@keyframes footerKawaiiMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer-kawaii-marquee {
+    height: 42px !important;
+  }
+
+  .footer-kawaii-track {
+    gap: 20px !important;
+    animation-duration: 24s !important;
+  }
+
+  .footer-kawaii-item {
+    font-size: 0.78rem !important;
+    line-height: 42px !important;
+    gap: 7px !important;
+  }
+
+  .footer-kawaii-item img {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
+
+
+/* =========================================================
+   13. Archive / Tags / Categories — Japanese Washi Index Style
+   归档页 / 标签页 / 分类页：日系手账索引风格覆盖
+   放在 custom.css 最末尾；本文件已自动追加
+   ========================================================= */
+
+/* ---------- 13.1 通用：归档、标签、分类页面外层变成奶油纸面 ---------- */
+
+body:has(#archive) .layout,
+body:has(#page.page-tags) .layout,
+body:has(#page.page-categories) .layout {
+  max-width: 1040px !important;
+  width: min(1040px, calc(100vw - 64px)) !important;
+  margin: 0 auto !important;
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+  display: block !important;
+}
+
+body:has(#archive) #content-inner,
+body:has(#page.page-tags) #content-inner,
+body:has(#page.page-categories) #content-inner {
+  padding-top: 44px !important;
+}
+
+#archive,
+#page.page-tags,
+#page.page-categories {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 960px !important;
+  min-height: 0 !important;
+  margin: 0 auto 2.4rem !important;
+  padding: 42px 50px 46px !important;
+  border-radius: 34px !important;
+
+  background: rgba(255, 252, 244, 0.90) !important;
+  border: 1px solid rgba(132, 108, 86, 0.14) !important;
+  box-shadow:
+    0 20px 46px rgba(72, 54, 38, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86) !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  overflow: hidden !important;
+}
+
+/* 纸纹 */
+#archive::before,
+#page.page-tags::before,
+#page.page-categories::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  opacity: 0.16 !important;
+  background-image:
+    linear-gradient(rgba(118, 97, 78, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(118, 97, 78, 0.06) 1px, transparent 1px) !important;
+  background-size: 28px 28px !important;
+  z-index: 0 !important;
+}
+
+#archive > *,
+#page.page-tags > *,
+#page.page-categories > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* ---------- 13.2 归档页标题 ---------- */
+
+#archive .article-sort-title,
+#archive .archive-title {
+  position: relative !important;
+  display: block !important;
+  margin: 0 0 34px 0 !important;
+  padding-left: 38px !important;
+  color: #292622 !important;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    serif !important;
+  font-size: clamp(2rem, 4.2vw, 3.6rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0.02em !important;
+}
+
+#archive .article-sort-title::before,
+#archive .archive-title::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0.55em !important;
+  width: 28px !important;
+  height: 1.5px !important;
+  background: rgba(70, 58, 48, 0.48) !important;
+  transform: rotate(-30deg) !important;
+  transform-origin: left center !important;
+}
+
+#archive .article-sort-title::after,
+#archive .archive-title::after {
+  content: "Archive / 时间索引" !important;
+  display: block !important;
+  margin-top: 8px !important;
+  color: rgba(76, 67, 60, 0.58) !important;
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+  font-size: 0.9rem !important;
+  font-weight: 520 !important;
+  line-height: 1.7 !important;
+  letter-spacing: 0.10em !important;
+}
+
+/* ---------- 13.3 归档时间线：从严肃竖线改成手账索引卡 ---------- */
+
+#archive .article-sort {
+  margin: 0 !important;
+  padding-left: 0 !important;
+  border-left: none !important;
+}
+
+#archive .article-sort-item.year {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 34px !important;
+  margin: 10px 0 16px 0 !important;
+  padding: 0 16px !important;
+  border-radius: 999px !important;
+  color: #75514b !important;
+  background: rgba(255, 226, 217, 0.68) !important;
+  border: 1px solid rgba(132, 108, 86, 0.10) !important;
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+  font-size: 0.94rem !important;
+  font-weight: 760 !important;
+  letter-spacing: 0.08em !important;
+}
+
+#archive .article-sort-item {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 68px minmax(0, 1fr) !important;
+  gap: 18px !important;
+  align-items: center !important;
+
+  min-height: 84px !important;
+  margin: 0 0 13px 0 !important;
+  padding: 14px 18px !important;
+  border-radius: 22px !important;
+
+  background: rgba(255, 255, 255, 0.50) !important;
+  border: 1px solid rgba(132, 108, 86, 0.10) !important;
+  box-shadow: 0 8px 20px rgba(72, 54, 38, 0.045) !important;
+
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+#archive .article-sort-item:hover {
+  transform: translateY(-2px) !important;
+  background: rgba(255, 255, 255, 0.66) !important;
+  box-shadow: 0 12px 26px rgba(72, 54, 38, 0.075) !important;
+}
+
+#archive .article-sort-item::before {
+  display: none !important;
+  content: none !important;
+}
+
+#archive .article-sort-item-img {
+  width: 68px !important;
+  height: 68px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+  background: rgba(248, 241, 226, 0.72) !important;
+  border: 1px solid rgba(132, 108, 86, 0.10) !important;
+}
+
+#archive .article-sort-item-img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 18px !important;
+  filter: saturate(0.98) contrast(0.98) brightness(1.03) !important;
+}
+
+#archive .article-sort-item-info {
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+#archive .article-sort-item-time {
+  margin-bottom: 5px !important;
+  color: rgba(75, 66, 59, 0.52) !important;
+  font-size: 0.78rem !important;
+  font-weight: 650 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.05em !important;
+}
+
+#archive .article-sort-item-title {
+  color: #413a35 !important;
+  font-size: 1.04rem !important;
+  font-weight: 760 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.02em !important;
+  text-decoration: none !important;
+}
+
+#archive .article-sort-item-title:hover {
+  color: #75514b !important;
+}
+
+/* ---------- 13.4 标签页：改成手账标签贴纸墙 ---------- */
+
+#page.page-tags .page-title,
+#page.page-tags .page-main::before {
+  content: "Tags" !important;
+  display: block !important;
+  margin: 0 0 8px 0 !important;
+  padding-left: 38px !important;
+  color: #292622 !important;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    serif !important;
+  font-size: clamp(2rem, 4.2vw, 3.6rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0.02em !important;
+}
+
+#page.page-tags .page-main::before {
+  position: relative !important;
+}
+
+#page.page-tags .page-main::before {
+  background: none !important;
+}
+
+#page.page-tags .page-main {
+  color: #4b443e !important;
+}
+
+#page.page-tags .page-main > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+#page.page-tags .tag-cloud-list,
+#page.page-tags .tag-cloud-list.is-center {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 12px 10px !important;
+  margin: 28px 0 0 0 !important;
+  padding: 24px 0 4px !important;
+  text-align: left !important;
+  border-top: 1px solid rgba(78, 63, 50, 0.12) !important;
+}
+
+#page.page-tags .tag-cloud-list a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 36px !important;
+  margin: 0 !important;
+  padding: 0.42rem 0.92rem !important;
+  border-radius: 999px !important;
+  color: rgba(72, 62, 54, 0.74) !important;
+  background: rgba(255, 255, 255, 0.52) !important;
+  border: 1px solid rgba(132, 108, 86, 0.12) !important;
+  box-shadow: 0 6px 14px rgba(72, 54, 38, 0.045) !important;
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+  font-size: 0.92rem !important;
+  font-weight: 650 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.04em !important;
+  text-decoration: none !important;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+#page.page-tags .tag-cloud-list a::before {
+  content: "#";
+  margin-right: 4px;
+  color: rgba(117, 81, 75, 0.62);
+}
+
+#page.page-tags .tag-cloud-list a:hover {
+  transform: translateY(-2px) rotate(-1deg) !important;
+  color: #75514b !important;
+  background: rgba(255, 226, 217, 0.72) !important;
+  box-shadow: 0 10px 22px rgba(72, 54, 38, 0.075) !important;
+}
+
+#page.page-tags .tag-cloud-list a sup {
+  margin-left: 5px !important;
+  color: rgba(75, 66, 59, 0.44) !important;
+  font-size: 0.68em !important;
+  font-weight: 700 !important;
+}
+
+/* 去掉原来英文说明，换成更轻的底部提示 */
+#page.page-tags .page-main::after {
+  content: "点击标签，可以查看散落在不同日子里的同类记录。" !important;
+  display: block !important;
+  margin-top: 28px !important;
+  padding-top: 18px !important;
+  border-top: 1px solid rgba(78, 63, 50, 0.12) !important;
+  color: rgba(76, 67, 60, 0.48) !important;
+  font-size: 0.84rem !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.06em !important;
+  text-align: right !important;
+}
+
+/* ---------- 13.5 分类页也顺手统一成同风格，避免和标签页割裂 ---------- */
+
+#page.page-categories .page-title,
+#page.page-categories .page-main::before {
+  content: "Categories" !important;
+  display: block !important;
+  margin: 0 0 8px 0 !important;
+  padding-left: 38px !important;
+  color: #292622 !important;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    serif !important;
+  font-size: clamp(2rem, 4.2vw, 3.6rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0.02em !important;
+}
+
+#page.page-categories .category-lists {
+  margin-top: 28px !important;
+  padding-top: 24px !important;
+  border-top: 1px solid rgba(78, 63, 50, 0.12) !important;
+}
+
+#page.page-categories .category-list {
+  display: grid !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+#page.page-categories .category-list-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  min-height: 58px !important;
+  margin: 0 !important;
+  padding: 14px 18px !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.50) !important;
+  border: 1px solid rgba(132, 108, 86, 0.10) !important;
+  box-shadow: 0 8px 20px rgba(72, 54, 38, 0.045) !important;
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+#page.page-categories .category-list-item:hover {
+  transform: translateY(-2px) !important;
+  background: rgba(255, 255, 255, 0.66) !important;
+  box-shadow: 0 12px 26px rgba(72, 54, 38, 0.075) !important;
+}
+
+#page.page-categories .category-list-link {
+  color: #413a35 !important;
+  font-size: 1rem !important;
+  font-weight: 720 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.04em !important;
+  text-decoration: none !important;
+}
+
+#page.page-categories .category-list-link::before {
+  content: "✿" !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+  color: rgba(117, 81, 75, 0.62) !important;
+  font-size: 0.84rem !important;
+}
+
+#page.page-categories .category-list-count {
+  min-width: 28px !important;
+  height: 28px !important;
+  padding: 0 9px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 226, 217, 0.68) !important;
+  color: #75514b !important;
+  font-size: 0.78rem !important;
+  font-weight: 760 !important;
+  line-height: 28px !important;
+}
+
+#page.page-categories .category-list-count::before,
+#page.page-categories .category-list-count::after {
+  content: none !important;
+}
+
+#page.page-categories .category-list-child {
+  width: 100% !important;
+  margin: 12px 0 0 22px !important;
+  padding-left: 16px !important;
+  border-left: 1px solid rgba(132, 108, 86, 0.16) !important;
+}
+
+#page.page-categories .page-main::after {
+  content: "每一个分类都是一个小抽屉，用来收纳一段时间里的兴趣和记录。" !important;
+  display: block !important;
+  margin-top: 28px !important;
+  padding-top: 18px !important;
+  border-top: 1px solid rgba(78, 63, 50, 0.12) !important;
+  color: rgba(76, 67, 60, 0.48) !important;
+  font-size: 0.84rem !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.06em !important;
+  text-align: right !important;
+}
+
+/* ---------- 13.6 分页统一得更轻一点 ---------- */
+
+#archive #pagination,
+#pagination {
+  margin-top: 2rem !important;
+  text-align: center !important;
+}
+
+#pagination .page-number,
+#pagination .extend {
+  min-width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+  margin: 0 4px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.52) !important;
+  border: 1px solid rgba(132, 108, 86, 0.10) !important;
+  color: rgba(72, 62, 54, 0.72) !important;
+  box-shadow: 0 6px 14px rgba(72, 54, 38, 0.045) !important;
+}
+
+#pagination .page-number.current {
+  background: rgba(255, 226, 217, 0.72) !important;
+  color: #75514b !important;
+  border-color: rgba(132, 108, 86, 0.12) !important;
+}
+
+/* ---------- 13.7 移动端 ---------- */
+
+@media screen and (max-width: 768px) {
+  body:has(#archive) .layout,
+  body:has(#page.page-tags) .layout,
+  body:has(#page.page-categories) .layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  #archive,
+  #page.page-tags,
+  #page.page-categories {
+    max-width: 100% !important;
+    padding: 32px 22px 36px !important;
+    border-radius: 26px !important;
+  }
+
+  #archive .article-sort-title,
+  #archive .archive-title,
+  #page.page-tags .page-title,
+  #page.page-tags .page-main::before,
+  #page.page-categories .page-title,
+  #page.page-categories .page-main::before {
+    padding-left: 30px !important;
+    font-size: 2rem !important;
+  }
+
+  #archive .article-sort-item {
+    grid-template-columns: 58px minmax(0, 1fr) !important;
+    gap: 14px !important;
+    padding: 13px 14px !important;
+    border-radius: 20px !important;
+  }
+
+  #archive .article-sort-item-img,
+  #archive .article-sort-item-img img {
+    width: 58px !important;
+    height: 58px !important;
+    border-radius: 16px !important;
+  }
+
+  #archive .article-sort-item-title {
+    font-size: 0.96rem !important;
+  }
+
+  #page.page-tags .tag-cloud-list {
+    gap: 10px 8px !important;
+  }
+
+  #page.page-tags .tag-cloud-list a {
+    min-height: 34px !important;
+    padding: 0.38rem 0.82rem !important;
+    font-size: 0.84rem !important;
+  }
+}
+
+
+/* =========================================================
+   14. Archive Page Reset — Clean Timeline Style
+   归档页修正版：改回干净时间线，不再使用大标题/贴纸卡片
+   放在 custom.css 最末尾；本文件已自动追加
+   ========================================================= */
+
+/* 归档页整体布局：像分类归档页一样，白色纸面 + 时间线 */
+body:has(#archive) .layout,
+.layout:has(#archive) {
+  max-width: 1120px !important;
+  width: min(1120px, calc(100vw - 72px)) !important;
+  margin: 0 auto !important;
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+  display: block !important;
+}
+
+body:has(#archive) #content-inner {
+  padding-top: 36px !important;
+}
+
+#archive {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 980px !important;
+  min-height: 520px !important;
+  margin: 0 auto 2.6rem auto !important;
+  padding: 54px 68px 58px !important;
+
+  border-radius: 0 !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  overflow: visible !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 关掉上一版加的纸纹和大卡片伪元素 */
+#archive::before,
+#archive::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 标题：恢复成类似 Category 页的干净标题 */
+#archive .article-sort-title,
+#archive .archive-title {
+  position: relative !important;
+  display: block !important;
+  margin: 0 0 44px 0 !important;
+  padding: 0 0 0 42px !important;
+
+  color: #343a40 !important;
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+
+  font-size: 2rem !important;
+  font-weight: 520 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* 左侧圆点 */
+#archive .article-sort-title::before,
+#archive .archive-title::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0.38em !important;
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  border: 4px solid #343a40 !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  transform: none !important;
+}
+
+/* 标题下方短线 */
+#archive .article-sort-title::after,
+#archive .archive-title::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  left: 8px !important;
+  top: calc(0.38em + 18px) !important;
+  width: 2px !important;
+  height: 36px !important;
+  background: #343a40 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 时间线本体 */
+#archive .article-sort {
+  position: relative !important;
+  margin: 0 !important;
+  padding-left: 42px !important;
+  border-left: none !important;
+}
+
+/* 时间线竖线 */
+#archive .article-sort::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 8px !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 2px !important;
+  background: #343a40 !important;
+}
+
+/* 年份：普通文字，不做粉色大胶囊 */
+#archive .article-sort-item.year {
+  position: relative !important;
+  display: block !important;
+  height: auto !important;
+  margin: 0 0 32px 0 !important;
+  padding: 0 !important;
+
+  color: #343a40 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+
+  font-size: 1.7rem !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.02em !important;
+  box-shadow: none !important;
+}
+
+/* 年份圆点 */
+#archive .article-sort-item.year::before {
+  content: "" !important;
+  position: absolute !important;
+  left: -41px !important;
+  top: 0.52em !important;
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  border: 3px solid #343a40 !important;
+  background: #ffffff !important;
+}
+
+/* 归档条目：像第二张图那样沿时间线排列，不要白色大横条 */
+#archive .article-sort-item:not(.year) {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 96px minmax(0, 1fr) !important;
+  gap: 26px !important;
+  align-items: center !important;
+
+  min-height: 104px !important;
+  margin: 0 0 24px 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: #343a40 !important;
+
+  transition: transform 0.18s ease !important;
+}
+
+#archive .article-sort-item:not(.year):hover {
+  transform: translateX(3px) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 每条文章的时间线圆点 */
+#archive .article-sort-item:not(.year)::before {
+  content: "" !important;
+  position: absolute !important;
+  left: -40px !important;
+  top: 46px !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  border: 3px solid #343a40 !important;
+  background: #ffffff !important;
+}
+
+/* 缩略图：不要胶囊卡片，保持小插画感 */
+#archive .article-sort-item-img {
+  width: 86px !important;
+  height: 86px !important;
+  flex: 0 0 86px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#archive .article-sort-item-img img {
+  width: 86px !important;
+  height: 86px !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: saturate(0.98) contrast(0.98) brightness(1.02) !important;
+}
+
+/* 文字区域 */
+#archive .article-sort-item-info {
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+#archive .article-sort-item-time {
+  margin: 0 0 6px 0 !important;
+  color: #8a8f94 !important;
+
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+
+  font-size: 0.92rem !important;
+  font-weight: 430 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.01em !important;
+}
+
+#archive .article-sort-item-time i {
+  margin-right: 6px !important;
+  color: #9aa0a6 !important;
+}
+
+#archive .article-sort-item-title {
+  color: #343a40 !important;
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+
+  font-size: 1.08rem !important;
+  font-weight: 520 !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0.01em !important;
+  text-decoration: none !important;
+}
+
+#archive .article-sort-item-title:hover {
+  color: #75514b !important;
+}
+
+/* 分页：保留你现在的粉色小圆按钮即可，但稍微上移 */
+#archive #pagination,
+body:has(#archive) #pagination {
+  margin-top: 2.2rem !important;
+  text-align: center !important;
+}
+
+#archive #pagination .page-number,
+#archive #pagination .extend {
+  min-width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 226, 217, 0.56) !important;
+  border: 1px solid rgba(132, 108, 86, 0.12) !important;
+  color: #75514b !important;
+  box-shadow: 0 6px 14px rgba(72, 54, 38, 0.045) !important;
+}
+
+#archive #pagination .page-number.current {
+  background: rgba(255, 226, 217, 0.80) !important;
+  color: #75514b !important;
+}
+
+/* 移动端 */
+@media screen and (max-width: 768px) {
+  body:has(#archive) .layout,
+  .layout:has(#archive) {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  #archive {
+    max-width: 100% !important;
+    min-height: 420px !important;
+    padding: 40px 28px 44px !important;
+  }
+
+  #archive .article-sort-title,
+  #archive .archive-title {
+    padding-left: 36px !important;
+    font-size: 1.7rem !important;
+    margin-bottom: 36px !important;
+  }
+
+  #archive .article-sort {
+    padding-left: 36px !important;
+  }
+
+  #archive .article-sort::before {
+    left: 8px !important;
+  }
+
+  #archive .article-sort-item.year::before {
+    left: -34px !important;
+  }
+
+  #archive .article-sort-item:not(.year) {
+    grid-template-columns: 78px minmax(0, 1fr) !important;
+    gap: 18px !important;
+    min-height: 92px !important;
+  }
+
+  #archive .article-sort-item:not(.year)::before {
+    left: -33px !important;
+    top: 39px !important;
+  }
+
+  #archive .article-sort-item-img,
+  #archive .article-sort-item-img img {
+    width: 72px !important;
+    height: 72px !important;
+  }
+
+  #archive .article-sort-item-title {
+    font-size: 1rem !important;
+  }
+
+  #archive .article-sort-item-time {
+    font-size: 0.84rem !important;
+  }
+}
+
+
+/* =========================================================
+   15. Archive Page Font Refinement
+   归档页字体微调：条目更大、更清楚、更贴合手账索引
+   放在 custom.css 最末尾；本文件已自动追加
+   ========================================================= */
+
+/* 归档页标题稍微更稳一点 */
+#archive .article-sort-title,
+#archive .archive-title {
+  font-size: 2.15rem !important;
+  font-weight: 560 !important;
+  letter-spacing: 0.015em !important;
+}
+
+/* 年份放大一点，不再显得空 */
+#archive .article-sort-item.year {
+  font-size: 1.9rem !important;
+  font-weight: 540 !important;
+  margin-bottom: 34px !important;
+}
+
+/* 每条文章的间距和图片略放大 */
+#archive .article-sort-item:not(.year) {
+  grid-template-columns: 104px minmax(0, 1fr) !important;
+  gap: 30px !important;
+  min-height: 118px !important;
+  margin-bottom: 26px !important;
+}
+
+/* 时间线圆点位置跟着条目高度微调 */
+#archive .article-sort-item:not(.year)::before {
+  top: 52px !important;
+}
+
+/* 缩略图放大，让页面不显得小气 */
+#archive .article-sort-item-img,
+#archive .article-sort-item-img img {
+  width: 96px !important;
+  height: 96px !important;
+}
+
+/* 日期字体放大，颜色稍微清楚一点 */
+#archive .article-sort-item-time {
+  margin-bottom: 8px !important;
+  color: rgba(75, 82, 88, 0.68) !important;
+  font-size: 1.05rem !important;
+  font-weight: 460 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.015em !important;
+}
+
+/* 日期前的小图标同步放大 */
+#archive .article-sort-item-time i {
+  margin-right: 7px !important;
+  font-size: 1rem !important;
+  color: rgba(75, 82, 88, 0.62) !important;
+}
+
+/* 文章标题放大，字重加一点 */
+#archive .article-sort-item-title {
+  color: #2f3439 !important;
+  font-size: 1.26rem !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* 悬停时不要发黑，保持柔和 */
+#archive .article-sort-item-title:hover {
+  color: #7a5750 !important;
+}
+
+/* 移动端不要太大 */
+@media screen and (max-width: 768px) {
+  #archive .article-sort-title,
+  #archive .archive-title {
+    font-size: 1.82rem !important;
+  }
+
+  #archive .article-sort-item.year {
+    font-size: 1.62rem !important;
+  }
+
+  #archive .article-sort-item:not(.year) {
+    grid-template-columns: 84px minmax(0, 1fr) !important;
+    gap: 18px !important;
+    min-height: 104px !important;
+  }
+
+  #archive .article-sort-item:not(.year)::before {
+    top: 46px !important;
+  }
+
+  #archive .article-sort-item-img,
+  #archive .article-sort-item-img img {
+    width: 78px !important;
+    height: 78px !important;
+  }
+
+  #archive .article-sort-item-time {
+    font-size: 0.92rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  #archive .article-sort-item-title {
+    font-size: 1.08rem !important;
+  }
+}
+
+
+/* =========================================================
+   16. Global Index Pages + Navigation Refinement
+   导航栏 / 归档页 / 分类页 / 标签页统一风格
+   适配：
+   - /archives/
+   - /categories/
+   - /tags/
+   - /categories/xxx/
+   - /tags/xxx/
+   ========================================================= */
+
+
+/* =========================================================
+   16.1 Navigation — 日系轻纸感导航
+   ========================================================= */
+
+#nav {
+  height: 64px !important;
+  line-height: 64px !important;
+  padding: 0 46px !important;
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+#site-name {
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+  font-size: 1.28rem !important;
+  font-weight: 760 !important;
+  letter-spacing: 0.015em !important;
+}
+
+#menus .menus_items {
+  gap: 28px !important;
+}
+
+#menus .menus_item > a,
+#nav .menus_item > a,
+#search-button .search {
+  position: relative !important;
+  padding: 0 4px !important;
+  line-height: 64px !important;
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+  font-size: 1.02rem !important;
+  font-weight: 720 !important;
+  letter-spacing: 0.035em !important;
+}
+
+#menus .menus_item > a::after,
+#nav .menus_item > a::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 17px !important;
+  width: 0 !important;
+  height: 2px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 226, 217, 0.86) !important;
+  transform: translateX(-50%) !important;
+  transition: width 0.22s ease, background 0.22s ease !important;
+}
+
+#menus .menus_item > a:hover::after,
+#nav .menus_item > a:hover::after {
+  width: 72% !important;
+}
+
+/* 顶部未滚动时：白字，适配插画头图 */
+#nav:not(.nav-scrolled) #site-name,
+#nav:not(.nav-scrolled) .site-page,
+#nav:not(.nav-scrolled) .menus_item > a,
+#nav:not(.nav-scrolled) #search-button a,
+#nav:not(.nav-scrolled) #nav-right a,
+#nav:not(.nav-scrolled) #nav-right i,
+#nav:not(.nav-scrolled) #nav-right span,
+#nav:not(.nav-scrolled) #page-name {
+  color: rgba(255, 255, 255, 0.96) !important;
+  text-shadow:
+    0 2px 10px rgba(38, 31, 25, 0.30),
+    0 6px 22px rgba(38, 31, 25, 0.16) !important;
+}
+
+/* 滚动后：淡奶油磨砂导航 */
+#nav.nav-scrolled {
+  background: rgba(255, 252, 244, 0.82) !important;
+  border-bottom: 1px solid rgba(132, 108, 86, 0.12) !important;
+  box-shadow: 0 10px 26px rgba(72, 54, 38, 0.10) !important;
+  backdrop-filter: blur(14px) saturate(112%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(112%) !important;
+}
+
+#nav.nav-scrolled #site-name,
+#nav.nav-scrolled .site-page,
+#nav.nav-scrolled .menus_item > a,
+#nav.nav-scrolled #search-button a,
+#nav.nav-scrolled #nav-right a,
+#nav.nav-scrolled #nav-right i,
+#nav.nav-scrolled #nav-right span,
+#nav.nav-scrolled #page-name {
+  color: #3d3834 !important;
+  text-shadow: none !important;
+}
+
+#nav.nav-scrolled .menus_item > a::after {
+  background: rgba(117, 81, 75, 0.38) !important;
+}
+
+/* 下拉菜单：像小便签，不做硬白块 */
+#nav .menus_item_child {
+  margin-top: 8px !important;
+  padding: 8px 0 !important;
+  min-width: 142px !important;
+  border-radius: 18px !important;
+  background: rgba(255, 252, 244, 0.94) !important;
+  border: 1px solid rgba(132, 108, 86, 0.13) !important;
+  box-shadow: 0 14px 30px rgba(72, 54, 38, 0.12) !important;
+  backdrop-filter: blur(12px) saturate(110%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(110%) !important;
+}
+
+#nav .menus_item_child li a {
+  color: #4b443e !important;
+  text-shadow: none !important;
+  font-size: 0.94rem !important;
+  font-weight: 560 !important;
+  letter-spacing: 0.035em !important;
+  padding: 8px 18px !important;
+  border-radius: 12px !important;
+  margin: 0 6px !important;
+}
+
+#nav .menus_item_child li a:hover {
+  color: #75514b !important;
+  background: rgba(255, 226, 217, 0.52) !important;
+}
+
+
+/* =========================================================
+   16.2 通用索引页外层
+   归档页、分类文章列表页、标签文章列表页都走 #archive
+   ========================================================= */
+
+body:has(#archive) .layout,
+.layout:has(#archive) {
+  max-width: 1120px !important;
+  width: min(1120px, calc(100vw - 72px)) !important;
+  margin: 0 auto !important;
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+  display: block !important;
+}
+
+body:has(#archive) #content-inner {
+  padding-top: 36px !important;
+}
+
+#archive {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 980px !important;
+  min-height: 520px !important;
+  margin: 0 auto 2.6rem auto !important;
+  padding: 54px 68px 58px !important;
+
+  border-radius: 30px !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(255, 255, 255, 0.58) !important;
+  box-shadow:
+    0 18px 42px rgba(72, 54, 38, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+
+  overflow: visible !important;
+  backdrop-filter: blur(3px) saturate(104%) !important;
+  -webkit-backdrop-filter: blur(3px) saturate(104%) !important;
+}
+
+#archive::before,
+#archive::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 标题：适配 Articles / Category / Tag */
+#archive .article-sort-title,
+#archive .archive-title {
+  position: relative !important;
+  display: block !important;
+  margin: 0 0 44px 0 !important;
+  padding: 0 0 0 42px !important;
+
+  color: #343a40 !important;
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+
+  font-size: 2.15rem !important;
+  font-weight: 560 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.015em !important;
+}
+
+#archive .article-sort-title::before,
+#archive .archive-title::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0.38em !important;
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  border: 4px solid #343a40 !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  transform: none !important;
+}
+
+#archive .article-sort-title::after,
+#archive .archive-title::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  left: 8px !important;
+  top: calc(0.38em + 18px) !important;
+  width: 2px !important;
+  height: 36px !important;
+  background: #343a40 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 时间线 */
+#archive .article-sort {
+  position: relative !important;
+  margin: 0 !important;
+  padding-left: 42px !important;
+  border-left: none !important;
+}
+
+#archive .article-sort::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 8px !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 2px !important;
+  background: #343a40 !important;
+}
+
+#archive .article-sort-item.year {
+  position: relative !important;
+  display: block !important;
+  height: auto !important;
+  margin: 0 0 34px 0 !important;
+  padding: 0 !important;
+
+  color: #343a40 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+
+  font-size: 1.9rem !important;
+  font-weight: 540 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.02em !important;
+  box-shadow: none !important;
+}
+
+#archive .article-sort-item.year::before {
+  content: "" !important;
+  position: absolute !important;
+  left: -41px !important;
+  top: 0.52em !important;
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  border: 3px solid #343a40 !important;
+  background: #ffffff !important;
+}
+
+#archive .article-sort-item:not(.year) {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 104px minmax(0, 1fr) !important;
+  gap: 30px !important;
+  align-items: center !important;
+
+  min-height: 118px !important;
+  margin: 0 0 26px 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: #343a40 !important;
+
+  transition: transform 0.18s ease !important;
+}
+
+#archive .article-sort-item:not(.year):hover {
+  transform: translateX(3px) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#archive .article-sort-item:not(.year)::before {
+  content: "" !important;
+  position: absolute !important;
+  left: -40px !important;
+  top: 52px !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  border: 3px solid #343a40 !important;
+  background: #ffffff !important;
+}
+
+#archive .article-sort-item-img {
+  width: 96px !important;
+  height: 96px !important;
+  flex: 0 0 96px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#archive .article-sort-item-img img {
+  width: 96px !important;
+  height: 96px !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: saturate(0.98) contrast(0.98) brightness(1.02) !important;
+}
+
+#archive .article-sort-item-info {
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+#archive .article-sort-item-time {
+  margin: 0 0 8px 0 !important;
+  color: rgba(75, 82, 88, 0.68) !important;
+
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+
+  font-size: 1.05rem !important;
+  font-weight: 460 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.015em !important;
+}
+
+#archive .article-sort-item-time i {
+  margin-right: 7px !important;
+  font-size: 1rem !important;
+  color: rgba(75, 82, 88, 0.62) !important;
+}
+
+#archive .article-sort-item-title {
+  color: #2f3439 !important;
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+
+  font-size: 1.26rem !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.01em !important;
+  text-decoration: none !important;
+}
+
+#archive .article-sort-item-title:hover {
+  color: #7a5750 !important;
+}
+
+
+/* =========================================================
+   16.3 标签总页 / 分类总页：统一奶油纸感索引卡
+   ========================================================= */
+
+body:has(#page.page-tags) .layout,
+body:has(#page.page-categories) .layout {
+  max-width: 1040px !important;
+  width: min(1040px, calc(100vw - 64px)) !important;
+  margin: 0 auto !important;
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+  display: block !important;
+}
+
+body:has(#page.page-tags) #content-inner,
+body:has(#page.page-categories) #content-inner {
+  padding-top: 40px !important;
+}
+
+#page.page-tags,
+#page.page-categories {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 960px !important;
+  min-height: 0 !important;
+  margin: 0 auto 2.4rem !important;
+  padding: 46px 54px 48px !important;
+  border-radius: 30px !important;
+
+  background: rgba(255, 252, 244, 0.90) !important;
+  border: 1px solid rgba(132, 108, 86, 0.14) !important;
+  box-shadow:
+    0 20px 46px rgba(72, 54, 38, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86) !important;
+
+  overflow: hidden !important;
+  backdrop-filter: blur(3px) saturate(104%) !important;
+  -webkit-backdrop-filter: blur(3px) saturate(104%) !important;
+}
+
+#page.page-tags::before,
+#page.page-categories::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  opacity: 0.14 !important;
+  background-image:
+    linear-gradient(rgba(118, 97, 78, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(118, 97, 78, 0.06) 1px, transparent 1px) !important;
+  background-size: 28px 28px !important;
+  z-index: 0 !important;
+}
+
+#page.page-tags > *,
+#page.page-categories > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+#page.page-tags .page-title,
+#page.page-tags .page-main::before,
+#page.page-categories .page-title,
+#page.page-categories .page-main::before {
+  display: block !important;
+  margin: 0 0 10px 0 !important;
+  padding-left: 38px !important;
+
+  color: #292622 !important;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    serif !important;
+
+  font-size: clamp(2.1rem, 4vw, 3.5rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0.02em !important;
+}
+
+#page.page-tags .page-main::before {
+  content: "Tags" !important;
+}
+
+#page.page-categories .page-main::before {
+  content: "Categories" !important;
+}
+
+/* 标签贴纸墙 */
+#page.page-tags .tag-cloud-list,
+#page.page-tags .tag-cloud-list.is-center {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 12px 10px !important;
+  margin: 30px 0 0 0 !important;
+  padding: 24px 0 4px !important;
+  text-align: left !important;
+  border-top: 1px solid rgba(78, 63, 50, 0.12) !important;
+}
+
+#page.page-tags .tag-cloud-list a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 38px !important;
+  margin: 0 !important;
+  padding: 0.45rem 0.98rem !important;
+  border-radius: 999px !important;
+  color: rgba(72, 62, 54, 0.74) !important;
+  background: rgba(255, 255, 255, 0.54) !important;
+  border: 1px solid rgba(132, 108, 86, 0.12) !important;
+  box-shadow: 0 6px 14px rgba(72, 54, 38, 0.045) !important;
+
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+
+  font-size: 0.94rem !important;
+  font-weight: 650 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.04em !important;
+  text-decoration: none !important;
+
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+#page.page-tags .tag-cloud-list a::before {
+  content: "#";
+  margin-right: 4px;
+  color: rgba(117, 81, 75, 0.62);
+}
+
+#page.page-tags .tag-cloud-list a:hover {
+  transform: translateY(-2px) rotate(-1deg) !important;
+  color: #75514b !important;
+  background: rgba(255, 226, 217, 0.72) !important;
+  box-shadow: 0 10px 22px rgba(72, 54, 38, 0.075) !important;
+}
+
+#page.page-tags .tag-cloud-list a sup {
+  margin-left: 5px !important;
+  color: rgba(75, 66, 59, 0.44) !important;
+  font-size: 0.68em !important;
+  font-weight: 700 !important;
+}
+
+#page.page-tags .page-main::after {
+  content: "点击标签，可以查看散落在不同日子里的同类记录。" !important;
+  display: block !important;
+  margin-top: 28px !important;
+  padding-top: 18px !important;
+  border-top: 1px solid rgba(78, 63, 50, 0.12) !important;
+  color: rgba(76, 67, 60, 0.48) !important;
+  font-size: 0.84rem !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.06em !important;
+  text-align: right !important;
+}
+
+/* 分类总页 */
+#page.page-categories .category-lists {
+  margin-top: 30px !important;
+  padding-top: 24px !important;
+  border-top: 1px solid rgba(78, 63, 50, 0.12) !important;
+}
+
+#page.page-categories .category-list {
+  display: grid !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+#page.page-categories .category-list-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  min-height: 60px !important;
+  margin: 0 !important;
+  padding: 15px 18px !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.52) !important;
+  border: 1px solid rgba(132, 108, 86, 0.10) !important;
+  box-shadow: 0 8px 20px rgba(72, 54, 38, 0.045) !important;
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+#page.page-categories .category-list-item:hover {
+  transform: translateY(-2px) !important;
+  background: rgba(255, 255, 255, 0.66) !important;
+  box-shadow: 0 12px 26px rgba(72, 54, 38, 0.075) !important;
+}
+
+#page.page-categories .category-list-link {
+  color: #413a35 !important;
+  font-size: 1.02rem !important;
+  font-weight: 720 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.04em !important;
+  text-decoration: none !important;
+}
+
+#page.page-categories .category-list-link::before {
+  content: "✿" !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+  color: rgba(117, 81, 75, 0.62) !important;
+  font-size: 0.84rem !important;
+}
+
+#page.page-categories .category-list-count {
+  min-width: 28px !important;
+  height: 28px !important;
+  padding: 0 9px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 226, 217, 0.68) !important;
+  color: #75514b !important;
+  font-size: 0.78rem !important;
+  font-weight: 760 !important;
+  line-height: 28px !important;
+}
+
+#page.page-categories .category-list-count::before,
+#page.page-categories .category-list-count::after {
+  content: none !important;
+}
+
+#page.page-categories .category-list-child {
+  width: 100% !important;
+  margin: 12px 0 0 22px !important;
+  padding-left: 16px !important;
+  border-left: 1px solid rgba(132, 108, 86, 0.16) !important;
+}
+
+#page.page-categories .page-main::after {
+  content: "每一个分类都是一个小抽屉，用来收纳一段时间里的兴趣和记录。" !important;
+  display: block !important;
+  margin-top: 28px !important;
+  padding-top: 18px !important;
+  border-top: 1px solid rgba(78, 63, 50, 0.12) !important;
+  color: rgba(76, 67, 60, 0.48) !important;
+  font-size: 0.84rem !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.06em !important;
+  text-align: right !important;
+}
+
+
+/* =========================================================
+   16.4 分页统一
+   ========================================================= */
+
+#archive #pagination,
+body:has(#archive) #pagination,
+#page.page-tags #pagination,
+#page.page-categories #pagination {
+  margin-top: 2.2rem !important;
+  text-align: center !important;
+}
+
+#archive #pagination .page-number,
+#archive #pagination .extend,
+#page.page-tags #pagination .page-number,
+#page.page-tags #pagination .extend,
+#page.page-categories #pagination .page-number,
+#page.page-categories #pagination .extend {
+  min-width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+  margin: 0 4px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 226, 217, 0.56) !important;
+  border: 1px solid rgba(132, 108, 86, 0.12) !important;
+  color: #75514b !important;
+  box-shadow: 0 6px 14px rgba(72, 54, 38, 0.045) !important;
+}
+
+#archive #pagination .page-number.current,
+#page.page-tags #pagination .page-number.current,
+#page.page-categories #pagination .page-number.current {
+  background: rgba(255, 226, 217, 0.80) !important;
+  color: #75514b !important;
+}
+
+
+/* =========================================================
+   16.5 移动端
+   ========================================================= */
+
+@media screen and (max-width: 768px) {
+  #nav {
+    height: 58px !important;
+    line-height: 58px !important;
+    padding: 0 18px !important;
+  }
+
+  #site-name {
+    font-size: 1.14rem !important;
+  }
+
+  #menus .menus_items {
+    gap: 16px !important;
+  }
+
+  #menus .menus_item > a,
+  #nav .menus_item > a,
+  #search-button .search {
+    line-height: 58px !important;
+    font-size: 0.94rem !important;
+  }
+
+  body:has(#archive) .layout,
+  .layout:has(#archive),
+  body:has(#page.page-tags) .layout,
+  body:has(#page.page-categories) .layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  #archive,
+  #page.page-tags,
+  #page.page-categories {
+    max-width: 100% !important;
+    min-height: 420px !important;
+    padding: 38px 26px 44px !important;
+    border-radius: 26px !important;
+  }
+
+  #archive .article-sort-title,
+  #archive .archive-title {
+    padding-left: 36px !important;
+    font-size: 1.82rem !important;
+    margin-bottom: 36px !important;
+  }
+
+  #archive .article-sort {
+    padding-left: 36px !important;
+  }
+
+  #archive .article-sort::before {
+    left: 8px !important;
+  }
+
+  #archive .article-sort-item.year {
+    font-size: 1.62rem !important;
+  }
+
+  #archive .article-sort-item.year::before {
+    left: -34px !important;
+  }
+
+  #archive .article-sort-item:not(.year) {
+    grid-template-columns: 84px minmax(0, 1fr) !important;
+    gap: 18px !important;
+    min-height: 104px !important;
+  }
+
+  #archive .article-sort-item:not(.year)::before {
+    left: -33px !important;
+    top: 46px !important;
+  }
+
+  #archive .article-sort-item-img,
+  #archive .article-sort-item-img img {
+    width: 78px !important;
+    height: 78px !important;
+  }
+
+  #archive .article-sort-item-time {
+    font-size: 0.92rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  #archive .article-sort-item-title {
+    font-size: 1.08rem !important;
+  }
+
+  #page.page-tags .page-title,
+  #page.page-tags .page-main::before,
+  #page.page-categories .page-title,
+  #page.page-categories .page-main::before {
+    padding-left: 30px !important;
+    font-size: 2rem !important;
+  }
+
+  #page.page-tags .tag-cloud-list a {
+    min-height: 34px !important;
+    padding: 0.38rem 0.82rem !important;
+    font-size: 0.84rem !important;
+  }
+
+  #page.page-categories .category-list-item {
+    padding: 13px 15px !important;
+    border-radius: 18px !important;
+  }
+}
+
+
+/* =========================================================
+   17. Archive/List Item Font + No Red Active State
+   修正：
+   - 点击后不要变红/红棕色
+   - 归档页、分类页、标签页的每条文章字体放大
+   - 条目更稳重，不“小家子气”
+   ========================================================= */
+
+/* ---------- 17.1 导航栏点击/悬停不变红 ---------- */
+
+#nav a:hover,
+#nav a:active,
+#nav a:focus,
+#nav a:visited,
+#menus .menus_item > a:hover,
+#menus .menus_item > a:active,
+#menus .menus_item > a:focus,
+#menus .menus_item > a:visited,
+#nav .menus_item > a:hover,
+#nav .menus_item > a:active,
+#nav .menus_item > a:focus,
+#nav .menus_item > a:visited {
+  color: inherit !important;
+}
+
+#nav.nav-scrolled a:hover,
+#nav.nav-scrolled a:active,
+#nav.nav-scrolled a:focus,
+#nav.nav-scrolled a:visited,
+#nav.nav-scrolled .menus_item > a:hover,
+#nav.nav-scrolled .menus_item > a:active,
+#nav.nav-scrolled .menus_item > a:focus,
+#nav.nav-scrolled .menus_item > a:visited {
+  color: #343a40 !important;
+}
+
+#nav .menus_item_child li a:hover,
+#nav .menus_item_child li a:active,
+#nav .menus_item_child li a:focus,
+#nav .menus_item_child li a:visited {
+  color: #343a40 !important;
+  background: rgba(248, 241, 226, 0.72) !important;
+}
+
+/* 下划线也不要偏红，改成暖灰米色 */
+#menus .menus_item > a::after,
+#nav .menus_item > a::after {
+  background: rgba(92, 82, 74, 0.34) !important;
+}
+
+#nav:not(.nav-scrolled) .menus_item > a::after {
+  background: rgba(255, 252, 244, 0.78) !important;
+}
+
+
+/* ---------- 17.2 归档页、单分类页、单标签页：每条文章字体放大 ---------- */
+
+/* 条目整体更舒展 */
+#archive .article-sort-item:not(.year) {
+  grid-template-columns: 112px minmax(0, 1fr) !important;
+  gap: 34px !important;
+  min-height: 132px !important;
+  margin-bottom: 30px !important;
+}
+
+/* 圆点位置同步 */
+#archive .article-sort-item:not(.year)::before {
+  top: 58px !important;
+}
+
+/* 插图略放大，和大字号匹配 */
+#archive .article-sort-item-img,
+#archive .article-sort-item-img img {
+  width: 104px !important;
+  height: 104px !important;
+}
+
+/* 日期更大、更清楚 */
+#archive .article-sort-item-time {
+  margin-bottom: 10px !important;
+  color: rgba(64, 70, 76, 0.70) !important;
+  font-size: 1.15rem !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.01em !important;
+}
+
+#archive .article-sort-item-time i {
+  margin-right: 8px !important;
+  font-size: 1.08rem !important;
+  color: rgba(64, 70, 76, 0.64) !important;
+}
+
+/* 标题重点放大：不再小 */
+#archive .article-sort-item-title {
+  color: #2f3439 !important;
+  font-size: 1.48rem !important;
+  font-weight: 720 !important;
+  line-height: 1.42 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* 彻底压掉点击后的红/红棕色 */
+#archive .article-sort-item-title:hover,
+#archive .article-sort-item-title:active,
+#archive .article-sort-item-title:focus,
+#archive .article-sort-item-title:visited,
+#archive .article-sort-item a:hover,
+#archive .article-sort-item a:active,
+#archive .article-sort-item a:focus,
+#archive .article-sort-item a:visited {
+  color: #2f3439 !important;
+  text-decoration: none !important;
+}
+
+/* 悬停只做轻微右移，不换红色 */
+#archive .article-sort-item:not(.year):hover .article-sort-item-title {
+  color: #1f252b !important;
+}
+
+#archive .article-sort-item:not(.year):hover {
+  transform: translateX(4px) !important;
+}
+
+
+/* ---------- 17.3 年份和标题也略微放大，避免上重下轻 ---------- */
+
+#archive .article-sort-title,
+#archive .archive-title {
+  color: #30363d !important;
+  font-size: 2.28rem !important;
+  font-weight: 600 !important;
+}
+
+#archive .article-sort-item.year {
+  color: #30363d !important;
+  font-size: 2.05rem !important;
+  font-weight: 580 !important;
+}
+
+
+/* ---------- 17.4 标签页、分类页也不要点击后变红 ---------- */
+
+#page.page-tags .tag-cloud-list a:hover,
+#page.page-tags .tag-cloud-list a:active,
+#page.page-tags .tag-cloud-list a:focus,
+#page.page-tags .tag-cloud-list a:visited {
+  color: #343a40 !important;
+  background: rgba(248, 241, 226, 0.78) !important;
+  border-color: rgba(132, 108, 86, 0.16) !important;
+}
+
+#page.page-tags .tag-cloud-list a::before {
+  color: rgba(92, 82, 74, 0.58) !important;
+}
+
+#page.page-categories .category-list-link:hover,
+#page.page-categories .category-list-link:active,
+#page.page-categories .category-list-link:focus,
+#page.page-categories .category-list-link:visited {
+  color: #343a40 !important;
+}
+
+#page.page-categories .category-list-link::before {
+  color: rgba(92, 82, 74, 0.58) !important;
+}
+
+#page.page-categories .category-list-count,
+#archive #pagination .page-number.current,
+#page.page-tags #pagination .page-number.current,
+#page.page-categories #pagination .page-number.current {
+  color: #343a40 !important;
+  background: rgba(248, 241, 226, 0.82) !important;
+  border-color: rgba(132, 108, 86, 0.16) !important;
+}
+
+
+/* ---------- 17.5 移动端控制大小 ---------- */
+
+@media screen and (max-width: 768px) {
+  #archive .article-sort-title,
+  #archive .archive-title {
+    font-size: 1.96rem !important;
+  }
+
+  #archive .article-sort-item.year {
+    font-size: 1.72rem !important;
+  }
+
+  #archive .article-sort-item:not(.year) {
+    grid-template-columns: 90px minmax(0, 1fr) !important;
+    gap: 20px !important;
+    min-height: 112px !important;
+    margin-bottom: 24px !important;
+  }
+
+  #archive .article-sort-item:not(.year)::before {
+    top: 49px !important;
+  }
+
+  #archive .article-sort-item-img,
+  #archive .article-sort-item-img img {
+    width: 84px !important;
+    height: 84px !important;
+  }
+
+  #archive .article-sort-item-time {
+    font-size: 0.98rem !important;
+    margin-bottom: 7px !important;
+  }
+
+  #archive .article-sort-item-title {
+    font-size: 1.18rem !important;
+    font-weight: 700 !important;
+  }
+}
+
+
+/* =========================================================
+   18. Navigation Underline Position Fix
+   修复目录 hover 横线压到文字上
+   ========================================================= */
+
+/* 菜单项本身给足高度，避免伪元素贴到文字中间 */
+#menus .menus_item > a,
+#nav .menus_item > a,
+#search-button .search {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 64px !important;
+  line-height: 64px !important;
+  padding: 0 3px !important;
+}
+
+/* 横线放到文字下方，不再覆盖文字 */
+#menus .menus_item > a::after,
+#nav .menus_item > a::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 10px !important;
+  width: 0 !important;
+  height: 2px !important;
+  border-radius: 999px !important;
+  background: rgba(92, 82, 74, 0.34) !important;
+  transform: translateX(-50%) !important;
+  transition: width 0.22s ease, background 0.22s ease !important;
+  pointer-events: none !important;
+}
+
+/* hover 时只在下方展开 */
+#menus .menus_item > a:hover::after,
+#nav .menus_item > a:hover::after {
+  width: 70% !important;
+}
+
+/* 未滚动头图区域的横线更浅 */
+#nav:not(.nav-scrolled) .menus_item > a::after,
+#nav:not(.nav-scrolled) #menus .menus_item > a::after {
+  background: rgba(255, 252, 244, 0.72) !important;
+}
+
+/* 有下拉箭头时也不要挤压文字 */
+#menus .menus_item > a > i,
+#menus .menus_item > a .fa-chevron-down,
+#nav .menus_item > a > i,
+#nav .menus_item > a .fa-chevron-down {
+  margin-left: 6px !important;
+  transform: translateY(1px) !important;
+}
+
+/* 移动端同步修正 */
+@media screen and (max-width: 768px) {
+  #menus .menus_item > a,
+  #nav .menus_item > a,
+  #search-button .search {
+    height: 58px !important;
+    line-height: 58px !important;
+  }
+
+  #menus .menus_item > a::after,
+  #nav .menus_item > a::after {
+    bottom: 8px !important;
+  }
+}
+
+
+/* =========================================================
+   19. Final Nav Color + Real Tags/Categories Page Fix
+   修复：
+   - 导航栏有的白有的黑
+   - 标签页 / 分类页未生效，因为实际页面未必带 page-tags/page-categories 类
+   ========================================================= */
+
+
+/* =========================================================
+   19.1 导航栏颜色彻底统一
+   ========================================================= */
+
+/* 未滚动：导航所有主菜单文字和图标统一白色 */
+#nav:not(.nav-scrolled) #site-name,
+#nav:not(.nav-scrolled) #site-name *,
+#nav:not(.nav-scrolled) #menus .menus_item > a,
+#nav:not(.nav-scrolled) #menus .menus_item > a *,
+#nav:not(.nav-scrolled) .site-page,
+#nav:not(.nav-scrolled) .site-page *,
+#nav:not(.nav-scrolled) #search-button a,
+#nav:not(.nav-scrolled) #search-button a *,
+#nav:not(.nav-scrolled) #search-button i,
+#nav:not(.nav-scrolled) #nav-right > div > a,
+#nav:not(.nav-scrolled) #nav-right > div > a *,
+#nav:not(.nav-scrolled) #nav-right i,
+#nav:not(.nav-scrolled) #nav-right span,
+#nav:not(.nav-scrolled) #page-name {
+  color: rgba(255, 255, 255, 0.96) !important;
+  fill: rgba(255, 255, 255, 0.96) !important;
+  text-shadow:
+    0 2px 10px rgba(38, 31, 25, 0.34),
+    0 6px 22px rgba(38, 31, 25, 0.18) !important;
+}
+
+/* 滚动后：导航所有主菜单文字和图标统一深色 */
+#nav.nav-scrolled #site-name,
+#nav.nav-scrolled #site-name *,
+#nav.nav-scrolled #menus .menus_item > a,
+#nav.nav-scrolled #menus .menus_item > a *,
+#nav.nav-scrolled .site-page,
+#nav.nav-scrolled .site-page *,
+#nav.nav-scrolled #search-button a,
+#nav.nav-scrolled #search-button a *,
+#nav.nav-scrolled #search-button i,
+#nav.nav-scrolled #nav-right > div > a,
+#nav.nav-scrolled #nav-right > div > a *,
+#nav.nav-scrolled #nav-right i,
+#nav.nav-scrolled #nav-right span,
+#nav.nav-scrolled #page-name {
+  color: #343a40 !important;
+  fill: #343a40 !important;
+  text-shadow: none !important;
+}
+
+/* 访问过 / 点击过 / 聚焦后，不允许变红或变黑 */
+#nav #site-name:visited,
+#nav #site-name:active,
+#nav #site-name:focus,
+#nav .site-page:visited,
+#nav .site-page:active,
+#nav .site-page:focus,
+#nav .menus_item > a:visited,
+#nav .menus_item > a:active,
+#nav .menus_item > a:focus,
+#nav #search-button a:visited,
+#nav #search-button a:active,
+#nav #search-button a:focus,
+#nav #nav-right a:visited,
+#nav #nav-right a:active,
+#nav #nav-right a:focus {
+  color: inherit !important;
+}
+
+/* 下拉菜单本身永远是深色，避免被未滚动白字规则影响 */
+#nav .menus_item_child,
+#nav .menus_item_child *,
+#nav:not(.nav-scrolled) .menus_item_child,
+#nav:not(.nav-scrolled) .menus_item_child *,
+#nav.nav-scrolled .menus_item_child,
+#nav.nav-scrolled .menus_item_child * {
+  color: #4b443e !important;
+  text-shadow: none !important;
+  fill: #4b443e !important;
+}
+
+/* 下拉菜单 hover 也不红 */
+#nav .menus_item_child li a:hover,
+#nav .menus_item_child li a:active,
+#nav .menus_item_child li a:focus,
+#nav .menus_item_child li a:visited {
+  color: #343a40 !important;
+  background: rgba(248, 241, 226, 0.76) !important;
+}
+
+
+/* =========================================================
+   19.2 标签页 / 分类页：不依赖 page-tags/page-categories 类
+   用页面真实结构 .tag-cloud-list / .category-lists 命中
+   ========================================================= */
+
+/* 标签页、分类页外层统一 */
+body:has(.tag-cloud-list) .layout,
+body:has(.category-lists) .layout {
+  max-width: 1040px !important;
+  width: min(1040px, calc(100vw - 64px)) !important;
+  margin: 0 auto !important;
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+  display: block !important;
+}
+
+body:has(.tag-cloud-list) #content-inner,
+body:has(.category-lists) #content-inner {
+  padding-top: 40px !important;
+}
+
+/* 命中没有 page-tags / page-categories 类的 #page */
+body:has(.tag-cloud-list) #page,
+body:has(.category-lists) #page {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 960px !important;
+  min-height: 0 !important;
+  margin: 0 auto 2.4rem !important;
+  padding: 46px 54px 48px !important;
+  border-radius: 30px !important;
+
+  background: rgba(255, 252, 244, 0.90) !important;
+  border: 1px solid rgba(132, 108, 86, 0.14) !important;
+  box-shadow:
+    0 20px 46px rgba(72, 54, 38, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86) !important;
+
+  overflow: hidden !important;
+  backdrop-filter: blur(3px) saturate(104%) !important;
+  -webkit-backdrop-filter: blur(3px) saturate(104%) !important;
+}
+
+body:has(.tag-cloud-list) #page::before,
+body:has(.category-lists) #page::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  opacity: 0.14 !important;
+  background-image:
+    linear-gradient(rgba(118, 97, 78, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(118, 97, 78, 0.06) 1px, transparent 1px) !important;
+  background-size: 28px 28px !important;
+  z-index: 0 !important;
+}
+
+body:has(.tag-cloud-list) #page > *,
+body:has(.category-lists) #page > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* 标签页标题 */
+body:has(.tag-cloud-list) #page .page-title,
+body:has(.tag-cloud-list) #page .page-main::before {
+  content: "Tags" !important;
+  display: block !important;
+  margin: 0 0 10px 0 !important;
+  padding-left: 38px !important;
+
+  color: #292622 !important;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    serif !important;
+
+  font-size: clamp(2.1rem, 4vw, 3.5rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* 分类页标题 */
+body:has(.category-lists) #page .page-title,
+body:has(.category-lists) #page .page-main::before {
+  content: "Categories" !important;
+  display: block !important;
+  margin: 0 0 10px 0 !important;
+  padding-left: 38px !important;
+
+  color: #292622 !important;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    serif !important;
+
+  font-size: clamp(2.1rem, 4vw, 3.5rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* 标签贴纸墙 */
+body:has(.tag-cloud-list) #page .tag-cloud-list,
+body:has(.tag-cloud-list) #page .tag-cloud-list.is-center {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 12px 10px !important;
+  margin: 30px 0 0 0 !important;
+  padding: 24px 0 4px !important;
+  text-align: left !important;
+  border-top: 1px solid rgba(78, 63, 50, 0.12) !important;
+}
+
+body:has(.tag-cloud-list) #page .tag-cloud-list a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 38px !important;
+  margin: 0 !important;
+  padding: 0.45rem 0.98rem !important;
+  border-radius: 999px !important;
+
+  color: rgba(72, 62, 54, 0.74) !important;
+  background: rgba(255, 255, 255, 0.54) !important;
+  border: 1px solid rgba(132, 108, 86, 0.12) !important;
+  box-shadow: 0 6px 14px rgba(72, 54, 38, 0.045) !important;
+
+  font-family:
+    "SF Pro Rounded",
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    sans-serif !important;
+
+  font-size: 0.94rem !important;
+  font-weight: 650 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.04em !important;
+  text-decoration: none !important;
+}
+
+body:has(.tag-cloud-list) #page .tag-cloud-list a::before {
+  content: "#";
+  margin-right: 4px;
+  color: rgba(92, 82, 74, 0.58) !important;
+}
+
+body:has(.tag-cloud-list) #page .tag-cloud-list a:hover,
+body:has(.tag-cloud-list) #page .tag-cloud-list a:active,
+body:has(.tag-cloud-list) #page .tag-cloud-list a:focus,
+body:has(.tag-cloud-list) #page .tag-cloud-list a:visited {
+  color: #343a40 !important;
+  background: rgba(248, 241, 226, 0.78) !important;
+  border-color: rgba(132, 108, 86, 0.16) !important;
+  transform: translateY(-2px) rotate(-1deg) !important;
+}
+
+body:has(.tag-cloud-list) #page .tag-cloud-list a sup {
+  margin-left: 5px !important;
+  color: rgba(75, 66, 59, 0.44) !important;
+  font-size: 0.68em !important;
+  font-weight: 700 !important;
+}
+
+body:has(.tag-cloud-list) #page .page-main::after {
+  content: "点击标签，可以查看散落在不同日子里的同类记录。" !important;
+  display: block !important;
+  margin-top: 28px !important;
+  padding-top: 18px !important;
+  border-top: 1px solid rgba(78, 63, 50, 0.12) !important;
+  color: rgba(76, 67, 60, 0.48) !important;
+  font-size: 0.84rem !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.06em !important;
+  text-align: right !important;
+}
+
+/* 分类总页 */
+body:has(.category-lists) #page .category-lists {
+  margin-top: 30px !important;
+  padding-top: 24px !important;
+  border-top: 1px solid rgba(78, 63, 50, 0.12) !important;
+}
+
+body:has(.category-lists) #page .category-list {
+  display: grid !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+body:has(.category-lists) #page .category-list-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  min-height: 60px !important;
+  margin: 0 !important;
+  padding: 15px 18px !important;
+  border-radius: 20px !important;
+
+  background: rgba(255, 255, 255, 0.52) !important;
+  border: 1px solid rgba(132, 108, 86, 0.10) !important;
+  box-shadow: 0 8px 20px rgba(72, 54, 38, 0.045) !important;
+}
+
+body:has(.category-lists) #page .category-list-item:hover {
+  transform: translateY(-2px) !important;
+  background: rgba(255, 255, 255, 0.66) !important;
+  box-shadow: 0 12px 26px rgba(72, 54, 38, 0.075) !important;
+}
+
+body:has(.category-lists) #page .category-list-link {
+  color: #413a35 !important;
+  font-size: 1.02rem !important;
+  font-weight: 720 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.04em !important;
+  text-decoration: none !important;
+}
+
+body:has(.category-lists) #page .category-list-link::before {
+  content: "✿" !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+  color: rgba(92, 82, 74, 0.58) !important;
+  font-size: 0.84rem !important;
+}
+
+body:has(.category-lists) #page .category-list-link:hover,
+body:has(.category-lists) #page .category-list-link:active,
+body:has(.category-lists) #page .category-list-link:focus,
+body:has(.category-lists) #page .category-list-link:visited {
+  color: #343a40 !important;
+}
+
+body:has(.category-lists) #page .category-list-count {
+  min-width: 28px !important;
+  height: 28px !important;
+  padding: 0 9px !important;
+  border-radius: 999px !important;
+  background: rgba(248, 241, 226, 0.82) !important;
+  color: #343a40 !important;
+  font-size: 0.78rem !important;
+  font-weight: 760 !important;
+  line-height: 28px !important;
+  border: 1px solid rgba(132, 108, 86, 0.16) !important;
+}
+
+body:has(.category-lists) #page .category-list-count::before,
+body:has(.category-lists) #page .category-list-count::after {
+  content: none !important;
+}
+
+body:has(.category-lists) #page .category-list-child {
+  width: 100% !important;
+  margin: 12px 0 0 22px !important;
+  padding-left: 16px !important;
+  border-left: 1px solid rgba(132, 108, 86, 0.16) !important;
+}
+
+body:has(.category-lists) #page .page-main::after {
+  content: "每一个分类都是一个小抽屉，用来收纳一段时间里的兴趣和记录。" !important;
+  display: block !important;
+  margin-top: 28px !important;
+  padding-top: 18px !important;
+  border-top: 1px solid rgba(78, 63, 50, 0.12) !important;
+  color: rgba(76, 67, 60, 0.48) !important;
+  font-size: 0.84rem !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.06em !important;
+  text-align: right !important;
+}
+
+
+/* =========================================================
+   19.3 移动端
+   ========================================================= */
+
+@media screen and (max-width: 768px) {
+  body:has(.tag-cloud-list) .layout,
+  body:has(.category-lists) .layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  body:has(.tag-cloud-list) #page,
+  body:has(.category-lists) #page {
+    max-width: 100% !important;
+    padding: 38px 26px 44px !important;
+    border-radius: 26px !important;
+  }
+
+  body:has(.tag-cloud-list) #page .page-title,
+  body:has(.tag-cloud-list) #page .page-main::before,
+  body:has(.category-lists) #page .page-title,
+  body:has(.category-lists) #page .page-main::before {
+    padding-left: 30px !important;
+    font-size: 2rem !important;
+  }
+
+  body:has(.tag-cloud-list) #page .tag-cloud-list a {
+    min-height: 34px !important;
+    padding: 0.38rem 0.82rem !important;
+    font-size: 0.84rem !important;
+  }
+
+  body:has(.category-lists) #page .category-list-item {
+    padding: 13px 15px !important;
+    border-radius: 18px !important;
+  }
+}
+
