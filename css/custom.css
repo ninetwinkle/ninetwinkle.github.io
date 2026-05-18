@@ -2598,7 +2598,7 @@ body:has(#page.page-categories) #content-inner {
 
 /* 去掉原来英文说明，换成更轻的底部提示 */
 #page.page-tags .page-main::after {
-  content: "点击标签，可以查看散落在不同日子里的同类记录。" !important;
+  /* content: "点击标签，可以查看散落在不同日子里的同类记录。" !important; */
   display: block !important;
   margin-top: 28px !important;
   padding-top: 18px !important;
@@ -2708,7 +2708,7 @@ body:has(#page.page-categories) #content-inner {
 }
 
 #page.page-categories .page-main::after {
-  content: "每一个分类都是一个小抽屉，用来收纳一段时间里的兴趣和记录。" !important;
+  /* content: "每一个分类都是一个小抽屉，用来收纳一段时间里的兴趣和记录。" !important; */
   display: block !important;
   margin-top: 28px !important;
   padding-top: 18px !important;
@@ -3878,7 +3878,7 @@ body:has(#page.page-categories) #content-inner {
 }
 
 #page.page-tags .page-main::after {
-  content: "点击标签，可以查看散落在不同日子里的同类记录。" !important;
+  /* content: "点击标签，可以查看散落在不同日子里的同类记录。" !important; */
   display: block !important;
   margin-top: 28px !important;
   padding-top: 18px !important;
@@ -3967,7 +3967,7 @@ body:has(#page.page-categories) #content-inner {
 }
 
 #page.page-categories .page-main::after {
-  content: "每一个分类都是一个小抽屉，用来收纳一段时间里的兴趣和记录。" !important;
+  /* content: "每一个分类都是一个小抽屉，用来收纳一段时间里的兴趣和记录。" !important; */
   display: block !important;
   margin-top: 28px !important;
   padding-top: 18px !important;
@@ -4694,7 +4694,7 @@ body:has(.tag-cloud-list) #page .tag-cloud-list a sup {
 }
 
 body:has(.tag-cloud-list) #page .page-main::after {
-  content: "点击标签，可以查看散落在不同日子里的同类记录。" !important;
+  /* content: "点击标签，可以查看散落在不同日子里的同类记录。" !important; */
   display: block !important;
   margin-top: 28px !important;
   padding-top: 18px !important;
@@ -4791,7 +4791,7 @@ body:has(.category-lists) #page .category-list-child {
 }
 
 body:has(.category-lists) #page .page-main::after {
-  content: "每一个分类都是一个小抽屉，用来收纳一段时间里的兴趣和记录。" !important;
+  /* content: "每一个分类都是一个小抽屉，用来收纳一段时间里的兴趣和记录。" !important; */
   display: block !important;
   margin-top: 28px !important;
   padding-top: 18px !important;
